@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-feature android:name="android.hardware.type.automotive" android:required="false" />
+    <uses-permission android:name="android.car.permission.READ_CAR_PEDALS" />
+    <uses-permission android:name="android.car.permission.CAR_DYNAMICS_STATE" />
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <application android:label="Nostalife 차량 데이터 확인" android:allowBackup="false"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <uses-library android:name="android.car" android:required="false" />
+        <activity android:name=".ProbeActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

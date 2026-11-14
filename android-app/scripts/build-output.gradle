@@ -1,0 +1,4 @@
+gradle.beforeProject { project ->
+    def outputRoot = System.getProperty('nostalife.buildRoot')
+    if (outputRoot != null) project.layout.buildDirectory.set(new File(outputRoot, project.name))
+}

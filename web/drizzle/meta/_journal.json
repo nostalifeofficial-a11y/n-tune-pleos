@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1794288127207,
+      "tag": "0000_majestic_saracen",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1794293222897,
+      "tag": "0001_mature_norman_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1794298066615,
+      "tag": "0002_outstanding_alice",
+      "breakpoints": true
+    }
+  ]
+}

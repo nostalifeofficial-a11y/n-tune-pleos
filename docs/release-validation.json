@@ -1,0 +1,33 @@
+{
+  "version": "4.2.0",
+  "design": "01 Pit Wall",
+  "selected_screens": [
+    "summary",
+    "measurements_3_columns_4_rows"
+  ],
+  "android_build": "PASS",
+  "android_unit_tests": 25,
+  "android_test_failures": 0,
+  "launcher_self_checks": 8,
+  "actual_desktop_exe_launch": "PASS",
+  "actual_emulator_ui": {
+    "main": "PASS",
+    "main_lateral_unit_fits": true,
+    "details_12_cells_without_scroll": "PASS",
+    "analysis": "PASS",
+    "analysis_extra_slip_metrics": "PASS",
+    "android_back_to_main": "PASS"
+  },
+  "validation_scope": "Existing actual public web drive loaded by final EXE in official Pleos emulator. No new drive or paid AI request during this UI release.",
+  "app_cloud_result_equal": true,
+  "receipt_matches": true,
+  "analysis_scope": "start_to_analyze",
+  "minimum_valid_laps": 0,
+  "apk_sha256": "6f219718f1b365da5001c0649da9b3952f6df5c1ceb682cec6ad14942380b5c5",
+  "exe_sha256": "13b2add436463189266bbd4cadedc8d214ca5ac0e8f654b16f0143c5f5173da7",
+  "exe_bytes": 10546176,
+  "physical_vehicle_verified": false,
+  "fresh_pc_full_install_verified": false,
+  "source_commit": "d69262aa7c597e6d473651a069af00d41ec6c82f",
+  "validated_on": "2026-11-11"
+}

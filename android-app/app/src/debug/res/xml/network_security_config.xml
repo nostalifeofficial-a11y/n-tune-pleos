@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HTTP is allowed only in this debug resource overlay. The client separately
+     allows only literal private IP addresses, localhost and emulator loopback. -->
+<network-security-config><base-config cleartextTrafficPermitted="true"/></network-security-config>

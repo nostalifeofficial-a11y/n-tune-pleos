@@ -1,0 +1,190 @@
+{
+  "schema_version": "2.0.0",
+  "recommendation_id": "defaadfa-3b8d-4953-8d5b-28220adbad29",
+  "session_id": "2082c5bf-5246-4a89-8074-e7984e398ab9",
+  "created_at": "2026-11-10T06:59:08.164Z",
+  "source": "simulation_manual",
+  "simulation": true,
+  "analysis_mode": "external_ai",
+  "status": "analyzed",
+  "vehicle_id": "nostalife-virtual-3d-01",
+  "track_id": "nostalife-circuit-3d-v1",
+  "current_setup": {
+    "id": "balanced",
+    "label": "균형형",
+    "steering_gain": 1.08,
+    "steering_response_hz": 6,
+    "yaw_damping_hz": 4.4
+  },
+  "recommended_setup": null,
+  "hold_reason": null,
+  "analysis_window": {
+    "scope": "start_to_analyze",
+    "start_t_ms": 0,
+    "end_t_ms": 2000,
+    "duration_s": 2,
+    "sample_count": 41,
+    "includes_incomplete_and_invalid_laps": true,
+    "required_valid_laps": 0
+  },
+  "analysis": {
+    "headline": "테스트 주행 진단",
+    "diagnosis": "2초 가상 주행을 분석하는 계약 검증용 데이터입니다.",
+    "driver_coaching": "테스트 운전 팁",
+    "next_check": "테스트 비교",
+    "preset_reason": "현재 유지",
+    "recommended_preset": null,
+    "limitations": [
+      "테스트 응답이며 실제 AI 호출 결과가 아닙니다."
+    ]
+  },
+  "ai": {
+    "provider": "openai",
+    "model": "unit-test-model",
+    "response_id": "unit-test-fixture"
+  },
+  "capture_summary": {
+    "samples": 41,
+    "duration_s": 2,
+    "scope": "start_to_analyze",
+    "lat_g_peak_abs": 0.058586,
+    "long_g_peak_abs": 0.314884,
+    "throttle_mean_pct": 56.756533,
+    "brake_mean_pct": 0,
+    "speed_max_kmh": 19.945791
+  },
+  "evidence": {
+    "selected_laps": [],
+    "observed_metrics": {
+      "duration_s": 2,
+      "sample_count": 41,
+      "distance_m": 5.26226,
+      "speed_mean_kmh": 9.484283,
+      "speed_max_kmh": 19.945791,
+      "throttle_mean_pct": 56.756533,
+      "brake_mean_pct": 0,
+      "lat_g_p95_abs": 0.053795,
+      "long_g_p95_abs": 0.314104,
+      "lat_g_peak_abs": 0.058586,
+      "long_g_peak_abs": 0.314884,
+      "steering_rate_p95_per_s": 0.289457,
+      "steering_total_variation_per_s": 0.05,
+      "steering_corrections_per_min": 0,
+      "brake_release_p95_per_s": null,
+      "brake_release_sample_count": 0,
+      "yaw_steering_ratio_p95": 0.132805,
+      "valid_laps_available": 0,
+      "selected_lap_count": 0,
+      "excluded_lap_count": 0,
+      "invalid_or_partial_lap_count": 1,
+      "selected_duration_s": 2,
+      "selected_sample_count": 41,
+      "lap_time_median_s": null,
+      "lap_time_std_s": null,
+      "front_slip_p95_abs": 0.001876,
+      "front_slip_max_p95_abs": 0.002495,
+      "front_slip_imbalance_p95": 1.804196,
+      "front_suspension_diff_p95_mm": 4.711,
+      "front_signed_suspension_delta_p95_mm": 4.711,
+      "rear_slip_p95_abs": 0.002062,
+      "rear_slip_max_p95_abs": 0.002091,
+      "rear_slip_imbalance_p95": 0.029298,
+      "rear_suspension_diff_p95_mm": 5.472,
+      "rear_signed_suspension_delta_p95_mm": 5.472
+    },
+    "wheel_metrics": {
+      "fl": {
+        "suspension_mean_mm": -6.329927,
+        "suspension_p95_abs_mm": 8.956,
+        "suspension_min_mm": -9.139,
+        "suspension_max_mm": 0,
+        "slip_angle_p95_abs_rad": 0.002495
+      },
+      "fr": {
+        "suspension_mean_mm": -9.566463,
+        "suspension_p95_abs_mm": 11.428,
+        "suspension_min_mm": -11.615,
+        "suspension_max_mm": 0.441,
+        "slip_angle_p95_abs_rad": 0.001258
+      },
+      "rl": {
+        "suspension_mean_mm": 8.553122,
+        "suspension_p95_abs_mm": 11.447,
+        "suspension_min_mm": -0.372,
+        "suspension_max_mm": 11.891,
+        "slip_angle_p95_abs_rad": 0.002033
+      },
+      "rr": {
+        "suspension_mean_mm": 7.432195,
+        "suspension_p95_abs_mm": 9.918,
+        "suspension_min_mm": 0,
+        "suspension_max_mm": 10.02,
+        "slip_angle_p95_abs_rad": 0.002091
+      }
+    },
+    "handling_signature": {
+      "steering_vs_lateral_g": null,
+      "steering_vs_yaw_rate": null
+    },
+    "rationale": "2초 가상 주행을 분석하는 계약 검증용 데이터입니다.",
+    "missing_signals": [
+      "real_vehicle_sensor_data",
+      "ACC_calibrated_wheel_slip",
+      "weather",
+      "fuel"
+    ],
+    "limitations": [
+      "테스트 응답이며 실제 AI 호출 결과가 아닙니다."
+    ],
+    "execution_location": "hosted_worker",
+    "same_as_current": false,
+    "model": null,
+    "telemetry_origin": "simulated_four_wheel_dynamics"
+  },
+  "comparison_metrics": [
+    {
+      "key": "lap_time_median_s",
+      "label": "완성랩 시간 중앙값",
+      "unit": "s",
+      "desired_direction": "lower",
+      "baseline": null,
+      "method": "실제 완성한 유효 랩의 참고 통계; 분석의 필수 조건이 아님"
+    },
+    {
+      "key": "lap_time_std_s",
+      "label": "완성랩 시간 표준편차",
+      "unit": "s",
+      "desired_direction": "lower",
+      "baseline": null,
+      "method": "실제 완성한 유효 랩의 참고 통계; 분석의 필수 조건이 아님"
+    },
+    {
+      "key": "steering_total_variation_per_s",
+      "label": "초당 조향 변화",
+      "unit": "1/s",
+      "desired_direction": "observe",
+      "baseline": 0.05,
+      "method": "주행 시작부터 분석 버튼을 누른 시점까지의 전체 기록"
+    },
+    {
+      "key": "brake_release_p95_per_s",
+      "label": "브레이크 해제 P95",
+      "unit": "1/s",
+      "desired_direction": "observe",
+      "baseline": null,
+      "method": "주행 시작부터 분석 버튼을 누른 시점까지의 전체 기록"
+    }
+  ],
+  "comparison_conditions": {
+    "lap_selection": "start_to_analyze",
+    "minimum_valid_laps": 0
+  },
+  "policy": {
+    "simulation_only": true,
+    "external_ai": true,
+    "training_collection": false,
+    "production_upload": true,
+    "raw_log_stored": false,
+    "retention_days": 7
+  }
+}

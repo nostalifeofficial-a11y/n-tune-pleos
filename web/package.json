@@ -1,0 +1,17 @@
+{
+  "name": "nostalife-drive",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "db:generate": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "drizzle-kit": "0.31.8",
+    "drizzle-orm": "0.44.7"
+  },
+  "packageManager": "pnpm@11.25.0"
+}

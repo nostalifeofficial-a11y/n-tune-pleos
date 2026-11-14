@@ -1,0 +1,2 @@
+13b2add436463189266bbd4cadedc8d214ca5ac0e8f654b16f0143c5f5173da7  Nostalife-Pleos.exe
+6f219718f1b365da5001c0649da9b3952f6df5c1ceb682cec6ad14942380b5c5  Nostalife-Pleos-4.2.0-debug.apk

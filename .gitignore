@@ -1,0 +1,23 @@
+# Credentials, local configuration and session data
+.env*
+!.env.example
+**/local.properties
+*.jks
+*.keystore
+*.pem
+**/.openai/hosting.json
+**/verification/
+**/node_modules/
+**/dist/
+**/build/
+**/.gradle*/
+**/.wrangler/
+**/__pycache__/
+*.pyc
+*.exe
+*.apk
+*.apk.gz
+*.zip
+pleos-launcher/apk.sha256
+.DS_Store
+Thumbs.db

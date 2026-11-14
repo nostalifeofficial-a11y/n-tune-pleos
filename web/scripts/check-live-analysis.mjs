@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import S from '../driving-simulator-3d/core.js';
+import measurements from '../analysis-demo/window.cjs';
+import {analyzeWithAI} from '../lib/ai.js';
+const s=new S.Session();s.start();
+for(let i=0;i<600;i++)s.step({throttle:i<260||i>=460?1:0,brake:i>=260&&i<460?1:0,steering:0});
+const measured=measurements.measureWindow(s.exportLog());
+const result=await analyzeWithAI(measured.payload,process.env);
+await fs.mkdir('verification',{recursive:true});
+await fs.writeFile('verification/live-analysis.json',JSON.stringify({window:measured.window,metrics:measured.metrics,...result},null,2));
+console.log(JSON.stringify({window:measured.window,model:result.model,analysis:result.analysis},null,2));

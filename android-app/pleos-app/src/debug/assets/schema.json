@@ -1,0 +1,11 @@
+{
+  "packageName": "kr.nostalife.pleos.debug",
+  "appDescription": "Displays local driving simulation analysis, measured simulation metrics and setup candidates for comparison.",
+  "invokeWord": "노스탈라이프",
+  "version": "2.0.0",
+  "actionCalls": [
+    {"type":"function","function":{"name":"SHOW_LATEST_RECOMMENDATION","description":"Read the latest local simulation setup recommendation and its validity status.","component":"activity","parameters":{"type":"object","properties":{},"required":[]}}},
+    {"type":"function","function":{"name":"EXPLAIN_RECOMMENDATION","description":"Explain the observations supporting the latest simulated setup candidate.","component":"activity","parameters":{"type":"object","properties":{},"required":[]}}},
+    {"type":"function","function":{"name":"SHOW_SESSION_METRICS","description":"Read the latest simulated lap times, pedal inputs, accelerations and suspension metrics.","component":"activity","parameters":{"type":"object","properties":{},"required":[]}}}
+  ]
+}
