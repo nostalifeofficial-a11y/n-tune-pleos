@@ -17,7 +17,22 @@ android {
         buildConfigField("String", "DEFAULT_SERVER_URL", "\"http://127.0.0.1:4182\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes { debug { applicationIdSuffix = ".debug" }; release { isMinifyEnabled = false } }
+    signingConfigs {
+        create("release") {
+            storeFile = providers.environmentVariable("NTUNE_RELEASE_STORE_FILE").orNull?.let { file(it) }
+            storePassword = providers.environmentVariable("NTUNE_RELEASE_STORE_PASSWORD").orNull
+            keyAlias = providers.environmentVariable("NTUNE_RELEASE_KEY_ALIAS").orNull
+            keyPassword = providers.environmentVariable("NTUNE_RELEASE_KEY_PASSWORD").orNull
+        }
+    }
+    buildTypes {
+        debug { applicationIdSuffix = ".debug" }
+        release {
+            isMinifyEnabled = false
+            isDebuggable = false
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
     sourceSets {
         getByName("main") {
             kotlin.srcDir("../app/src/main/java")

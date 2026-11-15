@@ -4,6 +4,10 @@
 **/local.properties
 *.jks
 *.keystore
+*.p12
+**/keystore.properties
+**/key.properties
+**/signing.env
 *.pem
 **/.openai/hosting.json
 **/verification/
@@ -24,3 +28,4 @@ Thumbs.db
 
 # Preserve the final contest APK alongside its source.
 !delivery/Nostalife-Pleos-5.3.0-debug.apk
+!apk/Nostalife_NTune_release.apk

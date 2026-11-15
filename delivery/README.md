@@ -1,4 +1,6 @@
-# 최종 심사용 APK · 5.3.0
+# 이전 Debug 개발 APK · 5.3.0
+
+이 폴더는 기존 Debug 검증 이력을 보존합니다. 새 서명된 Release는 [apk/ 안내](../apk/README.md)를 확인하세요. 아래 Debug 설치·실행 이력은 새 Release의 설치 검증 결과가 아닙니다. 기존 Windows 실행기는 이 Debug 패키지와 `run-as` 진단을 사용합니다.
 
 파일: [Nostalife-Pleos-5.3.0-debug.apk](https://github.com/nostalifeofficial-a11y/n-tune-pleos/raw/refs/heads/main/delivery/Nostalife-Pleos-5.3.0-debug.apk)
 

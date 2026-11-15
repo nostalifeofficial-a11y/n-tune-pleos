@@ -1,34 +1,244 @@
 {
-  "version": "5.3.0",
-  "validated_on": "2026-11-15",
-  "source_package": "Nostalife_Pleos_v5.3.0_20261115.zip",
-  "source_package_sha256": "a1029e40aed7b1e3e3ed46ff8ec79f3598bc0cb61cd6aa8e490052332d2316ca",
-  "android_unit_tests": {
-    "passed": 36,
-    "failed": 0
+  "schema_version": 2,
+  "current_run": {
+    "recorded_at_utc": "2026-11-15T09:45:46.253249+00:00",
+    "source_base_commit": "5fbc39ffe13131c30c09628275329a1cfabdd0de",
+    "source_scope": "Modified worktree: release signing configuration/build script and test import path; app runtime source unchanged.",
+    "overall_status": "partial",
+    "environment": {
+      "os": "Debian GNU/Linux 13, x86_64",
+      "jdk": "Eclipse Temurin 21.0.13+9",
+      "gradle": "9.4.1",
+      "android_gradle_plugin": "9.2.1",
+      "android_platform_package": "platforms;android-37.0",
+      "android_build_tools": "36.0.0",
+      "node": "24.22.1",
+      "python": "3.12",
+      "kvm_available": false
+    },
+    "release_apk": {
+      "path": "apk/Nostalife_NTune_release.apk",
+      "build_type": "release",
+      "assemble_task": ":pleos-app:assembleRelease",
+      "build_status": "passed",
+      "size_bytes": 24010824,
+      "sha256": "0c3617b08f45141b9982c4e58e6d9b9909f165114cb6db992a4cb23852da25bb",
+      "package": "kr.nostalife.pleos.contest",
+      "version_name": "5.3.0",
+      "version_code": 10,
+      "min_sdk": 29,
+      "target_sdk": 34,
+      "compile_sdk": 37,
+      "debuggable": false,
+      "cleartext_traffic_permitted": false,
+      "allow_backup": false,
+      "signature_verification": "passed",
+      "verified_signature_schemes": [
+        "v2"
+      ],
+      "certificate_sha256": "813c495f93e4f5a390faed73d7067b264289e451c01dbfcff1133e162e5fe741",
+      "certificate_dn": "CN=Nostalife N Tune Release, OU=Development, O=Nostalife",
+      "key_algorithm": "RSA",
+      "key_size_bits": 4096,
+      "zipalign_16k_check": "passed",
+      "signing_private_material_in_repository": false
+    },
+    "android_unit_tests": {
+      "status": "passed",
+      "variant": "debug",
+      "passed": 36,
+      "failed": 0,
+      "modules": {
+        "pleos-app": {
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "app": {
+          "tests": 19,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "vehicle-probe": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "command": ":pleos-app:testDebugUnitTest :app:testDebugUnitTest :vehicle-probe:testDebugUnitTest",
+      "note": "No testReleaseUnitTest task exists in this project; these are unit tests, not Release runtime verification."
+    },
+    "web_tests": {
+      "status": "passed",
+      "passed": 14,
+      "failed": 0,
+      "command": "cd web && node --test tests/ai.test.mjs tests/api.test.mjs tests/window.test.mjs",
+      "ai_responses": "mocked",
+      "live_api_calls": false
+    },
+    "local_bridge_tests": {
+      "status": "passed",
+      "passed": 42,
+      "failed": 0,
+      "command": "python -m unittest discover -s local-bridge -p 'test*.py' -v",
+      "data": "synthetic; no live ACC game or vehicle",
+      "harness_fix": "Resolve acc_shared_memory.py next to the test file; the old parent-directory path prevented loading this test module."
+    },
+    "release_lint": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 22,
+      "warning_rules": {
+        "OldTargetApi": 1,
+        "GradleDependency": 7,
+        "NewerVersionAvailable": 2,
+        "ModifierParameter": 1,
+        "DataExtractionRules": 1,
+        "UnusedResources": 1,
+        "UseKtx": 5,
+        "SetTextI18n": 4
+      },
+      "command": ":pleos-app:lintRelease",
+      "note": "Warnings were retained; no dependency upgrades or UI refactoring performed."
+    },
+    "windows_launcher_self_checks": {
+      "status": "not_run",
+      "passed": null,
+      "failed": null,
+      "reason": "Windows/.NET Framework compiler and runtime unavailable in this Linux environment. Previous count is preserved only in historical evidence."
+    },
+    "official_pleos_emulator": {
+      "emulator_version": "37.3.9.0 (16863232)",
+      "image_url": "https://nexus-playground.pleos.ai/repository/raw-releases/connect-avd/2.x/crp_car_emulator.zip",
+      "image_size_bytes": 4087751964,
+      "image_sha1": "b4f858d5bcc6c71506d7edfc872bcb9e5a11acaa",
+      "image_checksum_verified": true,
+      "observed_build_fingerprint": "Pleos/crp_avd/crp_avd_x86_64:14/RELEASE.release_connect_v2.1.0/release_connect_v2.1.0:user/test-keys",
+      "observed_android_release": "14",
+      "configured_primary_display": {
+        "width": 2560,
+        "height": 1440,
+        "density_dpi": 160
+      },
+      "configured_secondary_display": {
+        "width": 720,
+        "height": 1280,
+        "density_dpi": 213
+      },
+      "execution_mode": "forced TCG software CPU emulation; hardware acceleration unavailable",
+      "adb_connected": true,
+      "apk_file_transferred": true,
+      "transferred_apk_sha256_matches": true,
+      "boot_completed": false,
+      "install": {
+        "status": "blocked",
+        "command": "pm install -r /data/local/tmp/Nostalife_NTune_release.apk",
+        "observed_error": "cmd: Can't find service: package",
+        "reason": "Android framework became unstable during forced software emulation: Watchdog main-thread stall and system_server restart removed the package service."
+      },
+      "launch": {
+        "status": "not_run"
+      },
+      "restart": {
+        "status": "not_run"
+      },
+      "note": "Transferring an APK and checking its hash is not installation. The emulator limitation is not evidence of an APK runtime failure.",
+      "boot_diagnostics": [
+        "Hardware acceleration check: KVM requires a CPU that supports vmx or svm.",
+        "Default -accel off launch rejected; forced TCG used only to attempt validation.",
+        "Watchdog: Blocked in handler on main thread (main) for 60s.",
+        "system_server restarted; package/activity services were briefly present and then disappeared. sys.boot_completed remained empty."
+      ]
+    },
+    "release_user_journeys": {
+      "main_screen": "not_run",
+      "goal_selection_and_free_text": "not_run",
+      "comfort_and_steering_preferences": "not_run",
+      "vehicle_specific_n_custom": "not_run",
+      "web_3d_drive_analysis_pairing": "not_run",
+      "analysis_received_in_release_app": "not_run",
+      "actual_ai_response_and_display": "not_run",
+      "offline_and_permission_ui": "not_run"
+    },
+    "api_key_setup": {
+      "status": "failed",
+      "provider_error": "OpenAI Platform rejected the API key request.",
+      "secret_written": false
+    },
+    "actual_ai_response": {
+      "status": "not_run",
+      "reason": "New key provisioning was rejected. No valid local API key is available; no fallback synthetic result is reported as live AI."
+    },
+    "secret_scan": {
+      "status": "passed",
+      "scanned_git_files": 139,
+      "issues": [],
+      "scope": "Git-tracked/staged source and docs checked for credential filenames and known token/private-key patterns; Release APK entry names checked for secret files. This is not a full security audit."
+    },
+    "unverified": [
+      "Release APK installation and launch",
+      "Release UI end-to-end journey",
+      "Actual AI response in this run",
+      "Windows launcher self-checks in this run",
+      "Gleo voice end-to-end",
+      "Physical vehicle sensor collection",
+      "Fresh Windows PC installation"
+    ],
+    "not_implemented": [
+      "ECU setting changes"
+    ],
+    "official_submission_requirements": {
+      "source": "https://appdevchallenge.auto-hmg.io/guide/submission",
+      "deadline_source": "https://appdevchallenge.auto-hmg.io/notice/c0a1a000-2026-4923-8000-000000000007",
+      "deadline_kst": "2026-11-15T23:59:00+09:00",
+      "apk_directory": "apk/",
+      "apk_filename_template": "팀명_앱이름_release.apk",
+      "final_commit_sha_required": true,
+      "submission_email_sent": false
+    },
+    "remaining_manual_work": [
+      "Re-run Release installation/start/restart and UI journey on a host supporting hardware virtualization.",
+      "Resolve OpenAI Platform key-creation rejection and verify real AI success/error cases.",
+      "Run Windows launcher self-checks on Windows if submitting that optional tool.",
+      "Back up the new private release keystore and passwords outside this task environment.",
+      "Verify signed application/consent documents and submit the final commit SHA and APK path through the official process."
+    ]
   },
-  "web_tests": {
-    "passed": 14,
-    "failed": 0,
-    "rerun_for_publication": true
-  },
-  "launcher_self_checks": {
-    "passed": 8,
-    "failed": 0
-  },
-  "official_pleos_emulator": {
-    "installed_apk_hash_matches": true,
-    "actual_ai_response_received": true,
-    "goal_selection_and_recommendations_verified": true
-  },
-  "apk_filename": "Nostalife-Pleos-5.3.0-debug.apk",
-  "apk_sha256": "ae4727f12cb74a8d0004e73391d801ff445b3604219646f2510ab82d609c70b6",
-  "validation_scope": "Existing 5.3 release validation; source and APK copied without runtime changes for public submission. Web tests rerun successfully for publication.",
-  "physical_vehicle_verified": false,
-  "vehicle_write_api": false,
-  "n_custom_scope": "UI prototype",
-  "fresh_pc_full_install_verified": false,
-  "gleo_end_to_end_verified": false,
-  "apk_path": "delivery/Nostalife-Pleos-5.3.0-debug.apk",
-  "apk_git_blob_sha": "af825b942f754a2ba82dffe6ef795cf35d183991"
+  "previous_debug_validation": {
+    "version": "5.3.0",
+    "validated_on": "2026-11-15",
+    "source_package": "Nostalife_Pleos_v5.3.0_20261115.zip",
+    "source_package_sha256": "a1029e40aed7b1e3e3ed46ff8ec79f3598bc0cb61cd6aa8e490052332d2316ca",
+    "android_unit_tests": {
+      "passed": 36,
+      "failed": 0
+    },
+    "web_tests": {
+      "passed": 14,
+      "failed": 0,
+      "rerun_for_publication": true
+    },
+    "launcher_self_checks": {
+      "passed": 8,
+      "failed": 0
+    },
+    "official_pleos_emulator": {
+      "installed_apk_hash_matches": true,
+      "actual_ai_response_received": true,
+      "goal_selection_and_recommendations_verified": true
+    },
+    "apk_filename": "Nostalife-Pleos-5.3.0-debug.apk",
+    "apk_sha256": "ae4727f12cb74a8d0004e73391d801ff445b3604219646f2510ab82d609c70b6",
+    "validation_scope": "Existing 5.3 release validation; source and APK copied without runtime changes for public submission. Web tests rerun successfully for publication.",
+    "physical_vehicle_verified": false,
+    "vehicle_write_api": false,
+    "n_custom_scope": "UI prototype",
+    "fresh_pc_full_install_verified": false,
+    "gleo_end_to_end_verified": false,
+    "apk_path": "delivery/Nostalife-Pleos-5.3.0-debug.apk",
+    "apk_git_blob_sha": "af825b942f754a2ba82dffe6ef795cf35d183991"
+  }
 }

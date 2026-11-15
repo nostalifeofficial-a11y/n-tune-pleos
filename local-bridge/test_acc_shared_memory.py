@@ -9,7 +9,7 @@ from pathlib import Path
 import struct
 import unittest
 
-MODULE = Path(__file__).resolve().parents[1] / "acc_shared_memory.py"
+MODULE = Path(__file__).resolve().with_name("acc_shared_memory.py")
 SPEC = importlib.util.spec_from_file_location("acc_shared_memory_under_test", MODULE)
 acc = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(acc)

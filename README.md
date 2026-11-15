@@ -2,16 +2,28 @@
 
 주행 데이터와 운전자의 목표를 함께 분석해, 자신에게 맞는 주행 감각을 탐색하도록 돕는 현대자동차그룹 차량용 앱 개발 공모전 출품작입니다. 실제 앱 화면에는 Nostalife Drive Studio Pleos Edition 이름을 사용합니다.
 
-**2026-11-15 최종 제출용 소스와 검증된 APK**를 함께 제공합니다. 이전 4.2.0 릴리스는 과거 버전이며 현재 제출본은 5.3.0입니다.
+**5.3.0 서명된 Release APK와 소스**를 함께 제공합니다. 빌드·서명·자동 테스트는 통과했지만, 이번 Release의 공식 Pleos 에뮬레이터 설치·실행과 실제 AI 응답은 아직 검증되지 않았습니다. 아래 검증 범위를 확인해 주세요.
 
 ## 심사용 APK
 
-- **[5.3.0 APK 다운로드](https://github.com/nostalifeofficial-a11y/n-tune-pleos/raw/refs/heads/main/delivery/Nostalife-Pleos-5.3.0-debug.apk)**
-- [APK 파일과 설치 안내](delivery/README.md)
+- **[5.3.0 서명된 Release APK 다운로드](https://github.com/nostalifeofficial-a11y/n-tune-pleos/raw/refs/heads/main/apk/Nostalife_NTune_release.apk)**
+- [APK 정보·설치·검증 안내](apk/README.md)
 - [3D 테스트 주행 홈페이지](https://nostalife-drive.rusticglint.chatgpt.site)
 - [빌드 안내](docs/BUILD.md) · [검증 기록](docs/release-validation.json) · [APK SHA-256](docs/SHA256SUMS.txt)
 
-공식 Pleos 개발 에뮬레이터에 APK를 설치해 실행합니다. 웹에서 주행 후 ‘분석하고 앱으로 보내기’를 누르고, 앱의 ‘홈페이지 결과 → 결과 연결’에 같은 연결 코드를 입력합니다. 웹의 가상 주행은 시연용 데이터 공급 수단입니다.
+요구 환경은 공식 Pleos Connect 2.1.0 에뮬레이터(Android Automotive API 34 / x86_64)입니다. APK의 최소 SDK는 29입니다. 부팅이 완료된 에뮬레이터에서 저장소 루트 기준으로 설치·실행합니다.
+
+```bash
+adb install -r apk/Nostalife_NTune_release.apk
+adb shell am start -n kr.nostalife.pleos.contest/kr.nostalife.companion.PleosActivity
+```
+
+웹에서 주행 후 ‘분석하고 앱으로 보내기’를 누르고, 앱의 ‘홈페이지 결과 → 결과 연결’에 같은 연결 코드를 입력하는 흐름입니다. 서버에 유효한 AI API 설정이 필요합니다. 웹의 가상 주행은 시연용 데이터 공급 수단입니다. Release는 HTTPS 웹 연결을 사용하며, HTTP 로컬 연결과 기존 Windows 실행기는 [이전 Debug 개발 흐름](delivery/README.md)입니다.
+
+- APK: `apk/Nostalife_NTune_release.apk` · **24,010,824 bytes** (약 22.90 MiB)
+- 버전: `5.3.0` / code `10` · 패키지: `kr.nostalife.pleos.contest`
+- SHA-256: `0c3617b08f45141b9982c4e58e6d9b9909f165114cb6db992a4cb23852da25bb`
+- Release 빌드, APK Signature Scheme v2 검증, 디버그 플래그 해제, 16 KiB APK 정렬 검사 통과
 
 ## 구현한 기능
 
@@ -27,15 +39,18 @@
 
 ## Pleos 개발 에뮬레이터 환경 및 APK 유형
 
-- **Pleos 에뮬레이터 이미지:** 공식 `connect-avd/2.x/crp_car_emulator.zip` 사용. 저장소 실행기의 AVD 태그는 `Pleos Connect v2.1.0 APIs`이며, 이미지 자체의 세부 빌드 번호는 별도로 확인되지 않았습니다.
+- **Pleos 에뮬레이터 이미지:** 공식 `connect-avd/2.x/crp_car_emulator.zip` 사용. 이번 실행에서 ADB로 `Pleos/crp_avd/crp_avd_x86_64:14/RELEASE.release_connect_v2.1.0/release_connect_v2.1.0:user/test-keys` 빌드 지문을 확인했습니다.
 - **운영 환경:** Android Automotive API 34 / x86_64. 앱 빌드는 Android SDK Platform 37, Build Tools 36.0.0, Pleos Vehicle SDK 2.3.2를 사용합니다.
 - **메인 화면 설정:** 2560 × 1440 px, 160 dpi. **보조 디스플레이 설정:** 720 × 1280 px, 213 dpi. 이는 `pleos-launcher/Launcher.cs`의 AVD 구성값이며, 실제 차량의 해상도 규격을 뜻하지 않습니다.
-- **현재 검증 APK:** `delivery/Nostalife-Pleos-5.3.0-debug.apk` (debug 빌드, `kr.nostalife.pleos.contest.debug`). 공식 Pleos 개발 에뮬레이터에서 이 파일의 설치·표시와 AI 응답을 확인했습니다.
-- **release 제출 구분:** 현재 저장소에는 배포 서명된 release APK가 없습니다. 기존 debug APK의 파일명만 release로 변경해서는 안 됩니다. 공모전 안내의 `apk/팀명_앱이름_release.apk` 형식은 실제 릴리스 빌드·서명·설치 검증 후에만 충족한 것으로 간주합니다.
+- **Release 산출물:** `apk/Nostalife_NTune_release.apk`는 `assembleRelease`로 빌드하고 별도의 Release 키로 서명했습니다. 기존 Debug 파일의 이름을 바꾼 것이 아닙니다.
+- **이번 설치 검증 한계:** Linux 작업환경에 KVM/CPU 가상화가 없습니다. 소프트웨어 모드에서 공식 이미지의 ADB 연결과 APK 전송·해시 일치까지 확인했으나, Android 시스템의 메인 스레드가 60초 이상 멈춰 재시작되면서 패키지 서비스가 사라졌습니다. 설치·실행은 확인하지 못했습니다.
+- **과거 Debug 이력:** `delivery/Nostalife-Pleos-5.3.0-debug.apk`의 이전 설치·화면·AI 검증 기록은 보존했습니다. 그 결과를 새 Release의 검증 결과로 옮기지 않습니다.
 
 ## 검증 및 소스
 
-5.3.0 배포 시 Android 단위 테스트 36개, 웹 테스트 14개, Windows 실행기 검사 8개를 통과했습니다. 공식 Pleos 에뮬레이터에서 설치 APK의 해시 일치, 실제 AI 응답 수신, 목표 선택과 추천 표시를 확인했습니다. 실차 검증 완료를 의미하지 않습니다.
+이번 실행에서 Android 단위 테스트 **36/36**, 웹 모의 AI 테스트 **14/14**, 로컬 연결 합성 데이터 테스트 **42/42**가 통과했습니다. Release lint는 **오류 0건 / 경고 22건**입니다. Windows 실행기 검사는 이번 Linux 환경에서 실행하지 않았습니다.
+
+새 API 키 발급 요청이 OpenAI Platform에서 거부되어 이번 실제 AI 호출은 실행하지 않았습니다. 앱의 핵심 화면·연결·추천 표시의 Release 종단 간 검증과 Gleo 실제 음성 호출은 남아 있습니다. [검증 기록](docs/release-validation.json)의 `current_run`이 이번 결과이고, `previous_debug_validation`은 기존 이력입니다.
 
 | 경로 | 내용 |
 |---|---|
@@ -44,8 +59,13 @@
 | web/ | 테스트 주행, AI 서버, 결과 전달 API |
 | pleos-launcher/ | 공식 에뮬레이터와 APK를 준비하는 Windows 실행기 |
 | local-bridge/ | PC 테스트 주행 입력과 로컬 연결 도구 |
-| delivery/ | 최종 APK와 설치 안내 |
+| apk/ | 서명된 Release APK와 설치·검증 안내 |
+| delivery/ | 이전 Debug APK와 개발용 설치 안내 |
 
-[소스 파일 해시 목록](docs/source-manifest.json) · [Pleos API 적용 근거](docs/API-적용근거.md) · [외부 구성요소](docs/THIRD_PARTY_NOTICES.md)
+[현재 소스 파일 해시 목록](docs/source-manifest.json) · [이전 소스 해시 이력](docs/history/source-manifest-5.3.0-original.json) · [Pleos API 적용 근거](docs/API-적용근거.md) · [외부 구성요소](docs/THIRD_PARTY_NOTICES.md)
+
+심레이싱 원본 Nostalife의 ACC/PC 도구와 이번 Pleos 차량용 시제품은 실행 환경과 검증 범위가 다릅니다. 공모전 시제품의 N Custom은 개인 선호를 기록하는 UI이며 실차 센서 수집·ECU 설정 변경을 검증한 제품이 아닙니다.
+
+[공식 제출 안내](https://appdevchallenge.auto-hmg.io/guide/submission)는 `apk/팀명_앱이름_release.apk`, 소스 코드, 최종 커밋 SHA와 README의 실행 환경을 요구합니다. 접수양식·동의서 제출과 접수 이메일 전송은 별도 절차입니다.
 
 API 키, 개인 연결 코드, 원시 주행 기록, 로컬 계정 설정은 포함하지 않습니다. 자체 소스에 새 재배포 라이선스를 부여하지 않으며 외부 구성요소는 각 라이선스를 따릅니다.

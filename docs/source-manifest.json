@@ -1,6 +1,6 @@
 {
   "release": "5.3.0",
-  "note": "Files copied byte-for-byte from the validated 5.3 release Source directory. Publication README files, validation summaries, configuration examples and final APK are separate.",
+  "note": "Current source hashes after release build/signing preparation; app runtime source preserved. Prior publication manifest is archived in docs/history/source-manifest-5.3.0-original.json. README, validation reports, configuration examples and APK are separate.",
   "files": [
     {
       "path": "android-app/app/build.gradle.kts",
@@ -128,7 +128,7 @@
     },
     {
       "path": "android-app/pleos-app/build.gradle.kts",
-      "sha256": "f3647c828abf3901c9f46cc2755d4583632767a663e54ab64b87a71b3ab3de85"
+      "sha256": "f04112fe7675a9dd111092867de6615e124ba600c68975c06e54848d78d42158"
     },
     {
       "path": "android-app/pleos-app/src/debug/AndroidManifest.xml",
@@ -203,6 +203,10 @@
       "sha256": "f89b4fcb8a4e74aaf714e7dfbaeb8cba6c2a1da4db1af0f0a47c46703f315994"
     },
     {
+      "path": "android-app/scripts/build-release.sh",
+      "sha256": "0a9cc847d2f87b8245b799a2e180d82bfe348eeb18516fbd4d26c392fabd4e3e"
+    },
+    {
       "path": "android-app/settings.gradle.kts",
       "sha256": "4df18a6a4279d906b462ba67b3831a9cb5272d9127eabc4dd30aad46edc16722"
     },
@@ -264,7 +268,7 @@
     },
     {
       "path": "local-bridge/test_acc_shared_memory.py",
-      "sha256": "df80892d07e25859d6d4cd0260fd60309920cf3fd6014b89a44464e33843ba1c"
+      "sha256": "9c4ffe46122f128518b8ff66d27f1d18c3263d08a5a39b9af3daa11678e53ee6"
     },
     {
       "path": "local-bridge/test_bridge.py",
@@ -482,5 +486,6 @@
       "path": "web/worker/index.js",
       "sha256": "6a3d29f17e634b7c586d77e4ab63f98b1700c601e14df69fee9e9dff1e859426"
     }
-  ]
+  ],
+  "source_base_commit": "5fbc39ffe13131c30c09628275329a1cfabdd0de"
 }
