@@ -65,7 +65,8 @@ class ProbeActivity : Activity() {
     }
     private fun newCapture(): Capture {
         val store = Capture(SystemClock::elapsedRealtimeNanos)
-        store.environment("targetVehicle", "Hyundai The all-new AVANTE; actual trim/firmware must be recorded on vehicle")
+        store.environment("targetVehicle", "Pleos development environment; actual trim/firmware unverified")
+        store.define("speed_mps", "차량 속도", "m/s", "AAOS PERF_VEHICLE_SPEED")
         store.environment("startedAtUtc", Instant.now().toString())
         store.environment("deviceModel", Build.MODEL)
         store.environment("deviceManufacturer", Build.MANUFACTURER)
@@ -109,7 +110,7 @@ class ProbeActivity : Activity() {
         if (running) main.postDelayed(autosave, 9000)
     }
     private fun askPermissions() {
-        val requested = listOf("android.car.permission.READ_CAR_PEDALS", "pleos.car.permission.CAR_DRIVE").filter { name ->
+        val requested = listOf("android.car.permission.CAR_SPEED", "android.car.permission.READ_CAR_PEDALS", "pleos.car.permission.CAR_DRIVE").filter { name ->
             try {
                 val info = packageManager.getPermissionInfo(name, 0)
                 info.protectionLevel and PermissionInfo.PROTECTION_MASK_BASE == PermissionInfo.PROTECTION_DANGEROUS &&

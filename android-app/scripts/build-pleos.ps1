@@ -5,7 +5,7 @@ $oldJava = $env:JAVA_HOME
 $oldCache = $env:GRADLE_USER_HOME
 $mappedDrive = $null
 $buildRoot = $appRoot
-$buildOutputs = Join-Path $env:TEMP 'Nostalife-build-v3'
+$buildOutputs = Join-Path $env:TEMP 'Nostalife-Contest-build-v5'
 try {
     if (-not $env:JAVA_HOME) { $env:JAVA_HOME = Join-Path $env:ProgramFiles 'Android/Android Studio/jbr' }
     if (-not (Test-Path -LiteralPath (Join-Path $env:JAVA_HOME 'bin/java.exe'))) { throw 'Install Android Studio with its bundled JDK.' }
@@ -34,9 +34,9 @@ try {
     } finally { Pop-Location }
     $dist = Join-Path $appRoot 'dist'
     New-Item -ItemType Directory -Path $dist -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $buildOutputs 'pleos-app/outputs/apk/debug/pleos-app-debug.apk') -Destination (Join-Path $dist 'Nostalife-Pleos-4.2.0-debug.apk') -Force
+    Copy-Item -LiteralPath (Join-Path $buildOutputs 'pleos-app/outputs/apk/debug/pleos-app-debug.apk') -Destination (Join-Path $dist 'Nostalife-Pleos-5.3.0-debug.apk') -Force
     Copy-Item -LiteralPath (Join-Path $buildOutputs 'vehicle-probe/outputs/apk/debug/vehicle-probe-debug.apk') -Destination (Join-Path $dist 'Nostalife-Vehicle-Probe-debug.apk') -Force
-    Get-FileHash -LiteralPath (Join-Path $dist 'Nostalife-Pleos-4.2.0-debug.apk') -Algorithm SHA256
+    Get-FileHash -LiteralPath (Join-Path $dist 'Nostalife-Pleos-5.3.0-debug.apk') -Algorithm SHA256
 } finally {
     $env:JAVA_HOME = $oldJava
     $env:GRADLE_USER_HOME = $oldCache

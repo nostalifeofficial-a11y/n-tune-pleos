@@ -1,61 +1,42 @@
-# 개발 및 빌드
-
-이 문서는 배포된 v4.2.0을 기준으로 합니다. 차량 앱·Windows 실행기의 버전은 4.2.0이며, 웹 서버의 API 상태 버전은 4.0.0으로 유지되어 있습니다.
-
-## 웹과 AI 서버
-
-`web/`에서 Node.js 22.13 이상과 `pnpm`을 사용합니다. `node:sqlite`를 사용하는 로컬 테스트 환경이 필요합니다.
-
-```powershell
-cd web
-pnpm install --frozen-lockfile
-node --test tests/*.test.mjs
-Copy-Item .env.example .env.local
-node --env-file=.env.local scripts/preview.mjs
-```
-
-`.env.local`에는 본인이 발급한 프로젝트용 키를 직접 입력합니다. 브라우저·APK·EXE에 키를 넣지 마세요. 실제 AI 요청에는 API 이용료가 발생하며, 단위 테스트는 모의 응답을 사용합니다. 서버가 켜지면 `http://127.0.0.1:4182`를 엽니다. 미리보기 DB는 메모리에만 존재하므로 재시작할 때 새 연결 코드를 만드세요.
-
-호스팅용 빌드는 다음과 같습니다.
-
-```powershell
-Copy-Item .openai/hosting.example.json .openai/hosting.json
-# hosting.json에 본인의 Sites 프로젝트 ID를 설정합니다.
-node scripts/build.mjs
-```
-
-운영 환경에는 `DB` D1 바인딩과 `drizzle/`의 SQL 마이그레이션, 서버용 `OPENAI_API_KEY` secret이 필요합니다. 이 저장소에는 운영 계정 연결 및 배포 권한이 포함되어 있지 않습니다. `scripts/check-live-analysis.mjs`는 실제 유료 요청을 실행하는 별도 확인 스크립트입니다.
-
-웹의 EXE 다운로드를 자체 호스팅하려면 릴리스의 `Nostalife-Pleos.exe`를 `web/public/downloads/`에 배치하세요. 바이너리는 Git 소스 이력에 중복 저장하지 않습니다.
+# 5.3.0 개발 및 빌드
 
 ## Android / Pleos
 
-Android Studio의 JDK, Android SDK API 37 및 build-tools 36.0.0이 필요합니다. 현재 에뮬레이터 검증 대상은 공식 Pleos Connect 2.1.0 / API 34이고 Vehicle SDK는 2.3.2입니다. 대상 실차에서 같은 SDK 접근이 된다는 의미는 아닙니다.
-
-`android-app/`을 Android Studio로 열어 SDK 위치를 설정하거나, 로컬에서 `ANDROID_HOME`을 지정합니다. 개인 PC 경로가 들어가는 `local.properties`는 저장소에서 제외합니다.
+Android Studio JDK, Android SDK platform 37 / build-tools 36.0.0을 사용합니다. ANDROID_HOME을 본인의 SDK 경로로 지정합니다. 검증 환경은 공식 Pleos 개발 에뮬레이터이며 Vehicle SDK는 2.3.2입니다.
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File android-app/scripts/build-pleos.ps1
 ```
 
-스크립트는 Gradle Wrapper로 빌드·단위 테스트·릴리스 매니페스트 병합 검사를 수행합니다. 한글 경로 대응을 위해 사용 가능한 임시 드라이브 문자를 연결한 뒤 해제합니다. 결과는 `android-app/dist/Nostalife-Pleos-4.2.0-debug.apk`입니다. 개발용 debug 서명이므로 다른 PC에서 다시 빌드하면 APK 해시가 달라질 수 있습니다.
+앱·진단 모듈의 빌드, Android 단위 테스트와 릴리스 매니페스트 검사를 수행합니다. 결과 APK는 android-app/dist/Nostalife-Pleos-5.3.0-debug.apk입니다. 제출 APK 원본은 GitHub v5.3.0 릴리스에 별도 보존합니다. 로컬 서명과 빌드 환경에 따라 재빌드 APK 해시는 달라질 수 있습니다.
 
-공식 런타임 설치와 사용 조건은 [Pleos 안내](https://document.pleos.ai/docs/pleos-only/getting-started)를 따릅니다. 앱 마켓 등록·심사, 출시용 서명, 실차 권한 및 Gleo 전체 음성 흐름은 별도 작업입니다.
+## 웹과 AI 서버
 
-## Windows 실행기
-
-64비트 Windows의 .NET Framework C# 컴파일러를 사용합니다. APK를 먼저 빌드한 후 실행합니다.
+web/에서 Node.js 22.13 이상, pnpm을 사용합니다. 단위 테스트는 모의 AI와 node:sqlite를 이용하며 유료 AI 호출을 하지 않습니다.
 
 ```powershell
-New-Item -ItemType Directory -Path delivery -Force
+cd web
+pnpm install --frozen-lockfile
+node --test tests/ai.test.mjs tests/api.test.mjs tests/window.test.mjs
+Copy-Item .env.example .env.local
+node --env-file=.env.local scripts/preview.mjs
+```
+
+.env.local에 서버용 OPENAI_API_KEY를 설정합니다. 로컬 주소는 http://127.0.0.1:4182이며 미리보기 DB는 메모리에 존재합니다. 실제 AI 요청에는 이용료가 발생합니다. 서버 API 상태와 웹 package.json의 기존 4.0.0 표기는 Android 앱 5.3.0 버전과 별개입니다.
+
+호스팅 빌드는 web/.openai/hosting.example.json을 hosting.json으로 복사하고 본인 프로젝트를 설정한 뒤 node scripts/build.mjs로 수행합니다. 운영 환경에는 DB D1 바인딩, drizzle/ 마이그레이션과 서버용 API 키가 필요합니다. 운영 배포 권한·계정 설정은 포함하지 않습니다.
+
+## Windows 실행기와 로컬 연결
+
+Android APK를 먼저 빌드합니다. 로컬 연결 도구는 Python 3.12 및 PyInstaller, 실행기는 64비트 Windows의 .NET Framework C# 컴파일러를 사용합니다.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File local-bridge/build.ps1 -Python <python.exe>
 powershell -NoProfile -ExecutionPolicy Bypass -File pleos-launcher/build.ps1
 ```
 
-결과는 `delivery/Nostalife-Pleos.exe`입니다. 배포 릴리스에는 새로 빌드한 파일이 아닌, 2026-11-11에 확인한 기존 EXE 그대로를 첨부합니다. SHA-256은 `docs/SHA256SUMS.txt`를 참고하세요.
+delivery/에 생성된 두 EXE와 APK를 같은 폴더에 둡니다. 실행기는 공식 Pleos 에뮬레이터 준비·설치를 돕는 도구이며 Windows 차량 앱 자체가 아닙니다. 최초 에뮬레이터 준비에는 대용량 다운로드와 하드웨어 가상화가 필요합니다.
 
 ## 검증 범위
 
-- 원래 v4.2.0 배포: Android 단위 테스트 25개, 실행기 자체 검사 8개, 실제 EXE 실행과 공식 에뮬레이터의 메인·격자·분석 화면 확인.
-- 실제 웹 결과와 앱 캐시·수신 확인의 일치 검증. UI 배포 시점에는 기존 실제 분석 결과를 사용했고 새 유료 AI 요청은 하지 않았습니다.
-- 실차 확인, 새 PC의 전체 최초 설치, 차량 셋업 개선 효과는 검증되지 않았습니다.
-- 공개 소스에서는 운영 분석에 사용하지 않는 기존 Nostalife의 forest/model 파일과 관련 예전 테스트·내보내기 스크립트를 제외했습니다. 현재 웹 Worker·AI·주행 구간 분석 및 앱·실행기 코드는 원본과 동일하게 보존했습니다.
+Android 36개, 웹 14개, 실행기 8개 검사와 공식 에뮬레이터의 실제 AI 응답 수신·화면 표시를 기존 5.3 배포에서 확인했습니다. [검증 기록](release-validation.json)을 참고하세요. 실차 설정 효과, 새 PC의 전체 최초 설치, Gleo 실제 음성 호출, 출시용 서명 및 앱 마켓 심사는 별도 검증 대상입니다.

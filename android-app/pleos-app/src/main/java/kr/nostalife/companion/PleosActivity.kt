@@ -26,6 +26,7 @@ import java.io.File
 
 class PleosActivity : ComponentActivity() {
     private val model: RecommendationViewModel by viewModels()
+    private val drive: ContestModel by viewModels()
     private val restricted = mutableStateOf(true)
     private var car: Car? = null
     private var ux: CarUxRestrictionsManager? = null
@@ -41,14 +42,17 @@ class PleosActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { PleosDashboard(model, restricted = restricted.value,
+        setContent { ContestDashboard(model, drive, restricted = restricted.value,
             diagnostics = { if (!restricted.value) startActivity(Intent(this, ProbeActivity::class.java)) }) }
         connectUx()
         handlePairing(intent)
         handleGleo(intent)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                while (true) { if (!restricted.value) model.refresh(silent = true); delay(3000) }
+                while (true) {
+                    if (!restricted.value) { model.refresh(silent = true); drive.poll() }
+                    delay(1500)
+                }
             }
         }
     }
@@ -75,8 +79,11 @@ class PleosActivity : ComponentActivity() {
     }
     override fun onNewIntent(intent: Intent) { super.onNewIntent(intent); setIntent(intent); handlePairing(intent); handleGleo(intent) }
     private fun handlePairing(incoming: Intent?) {
+        if (incoming?.getBooleanExtra("nostalife_local", false) == true) {
+            model.saveConnection("http://127.0.0.1:4182", ""); drive.selectSource("sim"); model.refresh()
+        }
         incoming?.getStringExtra("nostalife_pair_code")?.let { code ->
-            if (model.savePublicCode(code) == null) model.refresh()
+            if (model.savePublicCode(code) == null) { drive.selectSource("web"); model.refresh() }
         }
     }
     private fun handleGleo(actionIntent: Intent?) {

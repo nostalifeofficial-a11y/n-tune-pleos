@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-feature android:name="android.hardware.type.automotive" android:required="true" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.car.permission.CAR_SPEED" />
     <uses-permission android:name="android.car.permission.READ_CAR_PEDALS" />
     <uses-permission android:name="android.car.permission.CAR_DYNAMICS_STATE" />
     <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
-    <application android:label="Driving Lab" android:icon="@drawable/ic_driving_lab"
+    <application android:label="Nostalife Drive" android:icon="@drawable/ic_driving_lab"
         android:allowBackup="false" android:supportsRtl="true" android:theme="@style/Theme.Nostalife"
         android:usesCleartextTraffic="false" android:networkSecurityConfig="@xml/network_security_config">
         <uses-library android:name="android.car" android:required="false" />

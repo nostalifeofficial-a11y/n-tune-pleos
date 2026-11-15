@@ -25,6 +25,8 @@ class HttpLatestReader : LatestReader {
             request.readTimeout = 8000
             request.useCaches = false
             request.setRequestProperty("Accept", "application/json")
+            request.setRequestProperty("User-Agent", "Nostalife-Pleos/5.1")
+            request.setRequestProperty("X-Nostalife-App", "pleos")
             if (connection.hosted) request.setRequestProperty("X-Driving-Lab-Client", "pleos")
             if (connection.token.isNotEmpty()) request.setRequestProperty("Authorization", "Bearer " + connection.token)
             val status = request.responseCode
@@ -66,6 +68,7 @@ class HttpLatestReader : LatestReader {
             request.readTimeout = 2500
             request.doOutput = true
             request.setRequestProperty("Content-Type", "application/json")
+            request.setRequestProperty("User-Agent", "Nostalife-Pleos/5.1")
             val bytes = JSONObject().put("recommendation_id", id).toString().toByteArray(Charsets.UTF_8)
             request.setFixedLengthStreamingMode(bytes.size)
             request.outputStream.use { it.write(bytes) }

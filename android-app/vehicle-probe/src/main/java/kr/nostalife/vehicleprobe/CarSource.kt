@@ -17,6 +17,8 @@ class CarSource(private val context: Context, private val handler: Handler, priv
     private var ready = false
     private val subscribed = mutableSetOf<Int>()
     private val properties = listOf(
+        Property("speed_mps", "PERF_VEHICLE_SPEED", VehiclePropertyIds.PERF_VEHICLE_SPEED,
+            "android.car.permission.CAR_SPEED"),
         Property("accelerator_pedal_pct", "ACCELERATOR_PEDAL_COMPRESSION_PERCENTAGE", 291504911,
             "android.car.permission.READ_CAR_PEDALS"),
         Property("brake_pedal_pct", "BRAKE_PEDAL_COMPRESSION_PERCENTAGE", 291504912,
@@ -149,7 +151,11 @@ class CarSource(private val context: Context, private val handler: Handler, priv
             capture.status(key, "property_temporarily_unavailable", "차량 값 상태=${value.status}; 측정값으로 사용하지 않습니다.")
             return
         }
-        val numeric = if (property.key == "suspension") (value.value as? Int)?.toDouble() else pedalPercentage(value.value)
+        val numeric = when (property.key) {
+            "suspension" -> (value.value as? Int)?.toDouble()
+            "speed_mps" -> (value.value as? Float)?.toDouble()?.takeIf { it.isFinite() }
+            else -> pedalPercentage(value.value)
+        }
         capture.sample(key, numeric, value.timestamp)
     }
     fun stop() {

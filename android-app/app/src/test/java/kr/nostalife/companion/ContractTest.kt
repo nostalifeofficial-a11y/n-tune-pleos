@@ -6,6 +6,48 @@ import org.junit.Test
 
 fun fixture(name: String): String = object {}.javaClass.classLoader!!.getResource(name)!!.readText()
 class ContractTest {
+    @Test fun optionalBriefAndNCustomRemainCompatibleWithOldResults() {
+        val raw = JSONObject(fixture("ai-window.json"))
+        val old = (RecommendationContract.parse(200, raw.toString()) as Latest.Found).result.ai!!
+        assertNull(old.brief); assertTrue(old.nCustom.isEmpty())
+        val analysis = raw.getJSONObject("analysis")
+        analysis.put("brief", JSONObject().put("summary", "짧은 주행의 반응을 확인했어요.").put("next_action", "조향을 부드럽게 이어 보세요."))
+        analysis.put("n_custom", org.json.JSONArray("""[{"car":"avante_n","variant":"MT","scope":"ui_preview","reason":"목표에 따른 UI 비교 후보","settings":[{"key":"engine","value":"Sport"},{"key":"rev","value":"Sport+"}]}]"""))
+        val ai = (RecommendationContract.parse(200, raw.toString()) as Latest.Found).result.ai!!
+        assertNotNull(ai.brief); assertEquals("Sport+", ai.nCustom.single().settings["rev"])
+        analysis.getJSONObject("brief").put("summary", "x".repeat(121))
+        assertThrows(ContractException::class.java) { RecommendationContract.parse(200, raw.toString()) }
+    }
+    @Test fun nCustomRejectsWrongCarsGearboxesStagesAndDuplicates() {
+        val base = """{"car":"avante_n","variant":"MT","scope":"ui_preview","reason":"목표에 따른 UI 비교 후보","settings":[{"key":"engine","value":"Sport"}]}"""
+        for (mutate in listOf<(JSONObject) -> Unit>(
+            { it.put("variant", "EV") }, { it.put("scope", "vehicle_control") },
+            { it.getJSONArray("settings").getJSONObject(0).put("key", "transmission") },
+            { it.getJSONArray("settings").getJSONObject(0).put("key", "esc").put("value", "Off") },
+            { it.getJSONArray("settings").getJSONObject(0).put("value", "Race") },
+            { it.getJSONArray("settings").put(JSONObject("""{"key":"engine","value":"Normal"}""")) },
+            { it.put("car", "ioniq5_n").put("variant", "EV").getJSONArray("settings").getJSONObject(0).put("key", "sound").put("value", "Lightspeed") }
+        )) {
+            val raw = JSONObject(fixture("ai-window.json")); val candidate = JSONObject(base); mutate(candidate)
+            raw.getJSONObject("analysis").put("n_custom", org.json.JSONArray().put(candidate))
+            assertThrows(ContractException::class.java) { RecommendationContract.parse(200, raw.toString()) }
+        }
+        val raw = JSONObject(fixture("ai-window.json"))
+        raw.getJSONObject("analysis").put("n_custom", org.json.JSONArray().put(JSONObject(base)).put(JSONObject(base)))
+        assertThrows(ContractException::class.java) { RecommendationContract.parse(200, raw.toString()) }
+    }
+    @Test fun targetsRequireValidAiValuesAndNeverFallback() {
+        val raw = JSONObject(fixture("ai-window.json"))
+        assertNull((RecommendationContract.parse(200, raw.toString()) as Latest.Found).result.ai!!.targets)
+        val target = JSONObject().put("comfort", 75).put("steering_response", 40).put("scope", "preference_trial")
+            .put("reason", "목표와 측정에 따른 비교 후보").put("next_check", "다음 주행 만족도 비교")
+        raw.getJSONObject("analysis").put("driving_targets", target)
+        assertEquals(75, (RecommendationContract.parse(200, raw.toString()) as Latest.Found).result.ai!!.targets!!.comfort)
+        listOf(-5, 101, 73, 65.5).forEach { value ->
+            target.put("comfort", value)
+            assertThrows(ContractException::class.java) { RecommendationContract.parse(200, raw.toString()) }
+        }
+    }
     @Test fun wholeWindowAiAnalysisNeedsNoCompletedLaps() {
         val result = (RecommendationContract.parse(200, fixture("ai-window.json")) as Latest.Found).result
         assertEquals("analyzed", result.status)

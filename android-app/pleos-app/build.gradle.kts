@@ -9,12 +9,12 @@ android {
     buildToolsVersion = "36.0.0"
     useLibrary("android.car", false)
     defaultConfig {
-        applicationId = "kr.nostalife.pleos"
+        applicationId = "kr.nostalife.pleos.contest"
         minSdk = 29
         targetSdk = 34
-        versionCode = 6
-        versionName = "4.2.0"
-        buildConfigField("String", "DEFAULT_SERVER_URL", "\"http://10.0.2.2:4181\"")
+        versionCode = 10
+        versionName = "5.3.0"
+        buildConfigField("String", "DEFAULT_SERVER_URL", "\"http://127.0.0.1:4182\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes { debug { applicationIdSuffix = ".debug" }; release { isMinifyEnabled = false } }

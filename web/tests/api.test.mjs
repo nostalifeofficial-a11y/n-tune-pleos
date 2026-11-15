@@ -5,8 +5,10 @@ import {database} from './db.mjs';
 import S from '../driving-simulator-3d/core.js';
 
 export const sampleAnalysis={headline:'테스트 진단',diagnosis:'관측값에 따른 테스트 설명',driver_coaching:'다음 주행의 테스트 팁',
- next_check:'같은 구간에서 비교',preset_reason:'현재 후보 유지',recommended_preset:null,limitations:['시뮬레이션']};
+ next_check:'같은 구간에서 비교',preset_reason:'현재 후보 유지',recommended_preset:null,limitations:['시뮬레이션'],driving_targets:{comfort:70,steering_response:45,scope:'preference_trial',reason:'측정과 목표 근거',next_check:'다음 주행 비교'}};
 const mockAI=async()=>({analysis:sampleAnalysis,provider:'openai',model:'test-model',response_id:'test-response'});
+sampleAnalysis.brief={summary:'주행 관측 요약',next_action:'다음 비교 행동'};
+sampleAnalysis.n_custom=[{car:'avante_n',variant:'MT',scope:'ui_preview',reason:'주행 목표에 따른 UI 비교 후보',settings:[{key:'engine',value:'Sport'}]}];
 function harness(ai=mockAI){
  const db=database(),jobs=[],app=ai===null?worker:createWorker({ai});
  const request=(path,method='GET',data,token,extra={})=>app.fetch(new Request('https://test.local'+path,{method,headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{}),...extra},...(data!==undefined?{body:JSON.stringify(data)}:{})}),{DB:db},{waitUntil(p){jobs.push(p)}});
@@ -14,6 +16,22 @@ function harness(ai=mockAI){
  return {db,request,create,jobs};
 }
 function drive(steps=200){const s=new S.Session();s.start();for(let i=0;i<steps;i++)s.step({throttle:.6,steering:i>150?.1:0});s.pause();return s.exportLog();}
+
+test('goal and both preference values reach the AI and are returned with its own numeric conclusion',async()=>{
+ let sent;
+ const {request,create}=harness(async payload=>{sent=payload;return mockAI();}),channel=await create();
+ const preference={goal:'출퇴근길을 부드럽게',comfort:85,steering_response:30};
+ const response=await request('/api/channels/'+channel.code+'/analyze','POST',{log:drive(),driving_preference:preference},channel.write_token);
+ assert.equal(response.status,200);
+ const result=await response.json();
+ assert.deepEqual(sent.driving_preference,preference);
+ assert.deepEqual(result.driving_preference,preference);
+ assert.deepEqual(result.analysis.driving_targets,sampleAnalysis.driving_targets);
+ assert.deepEqual(result.analysis.n_custom,sampleAnalysis.n_custom);
+ assert.deepEqual(result.analysis.brief,sampleAnalysis.brief);
+ assert.notEqual(result.analysis.driving_targets.comfort,preference.comfort);
+ assert.equal((await request('/api/channels/'+channel.code+'/analyze','POST',{log:drive(),driving_preference:{...preference,comfort:84}},channel.write_token)).status,400);
+});
 
 test('short zero-lap drive is analyzed, scoped to its own channel, and raw samples are not stored',async()=>{
  let sentPayload;
@@ -34,6 +52,36 @@ test('short zero-lap drive is analyzed, scoped to its own channel, and raw sampl
  assert.equal((await(await request('/api/channels/'+a.code+'/latest')).json()).session_id,log.session_id);
  assert.equal((await request('/api/channels/'+b.code+'/latest')).status,404);
  db.raw.prepare('UPDATE channels SET expires=0 WHERE code=?').run(a.code);assert.equal((await request('/api/channels/'+a.code+'/latest')).status,404);
+});
+test('Pleos can ask real AI for a new goal using only its stored summary without rewriting the drive',async()=>{
+ let sent;const {request,create}=harness(async payload=>{sent=payload;return mockAI();});
+ const channel=await create(),url='/api/channels/'+channel.code;
+ const original=await(await request(url+'/analyze','POST',{log:drive()},channel.write_token)).json();
+ const preference={goal:'동승자와 편안하게',comfort:65,steering_response:45};
+ const response=await request(url+'/advice','POST',{recommendation_id:original.recommendation_id,driving_preference:preference});
+ assert.equal(response.status,200);const advice=await response.json();
+ assert.equal(sent.source,'pleos_contest_saved_summary');assert.deepEqual(sent.driving_preference,preference);
+ assert.deepEqual(sent.measurements,original.evidence.observed_metrics);assert.ok(!('samples' in sent));
+ assert.notEqual(advice.recommendation_id,original.recommendation_id);assert.equal(advice.origin_recommendation_id,original.recommendation_id);
+ assert.deepEqual(advice.analysis.driving_targets,sampleAnalysis.driving_targets);
+ assert.deepEqual(advice.analysis.n_custom,sampleAnalysis.n_custom);
+ assert.deepEqual((await(await request(url+'/latest')).json()),original);
+ const other=await create();assert.equal((await request('/api/channels/'+other.code+'/advice','POST',{recommendation_id:original.recommendation_id,driving_preference:preference})).status,404);
+ assert.equal((await request(url+'/advice','POST',{recommendation_id:crypto.randomUUID(),driving_preference:preference})).status,409);
+ assert.equal((await request(url+'/advice','POST',{recommendation_id:original.recommendation_id,driving_preference:{...preference,comfort:66}})).status,400);
+});
+test('goal advice is bounded, rejects cross-site requests, and never overwrites an original on AI failure',async()=>{
+ let failed=false,calls=0;const {request,create}=harness(async()=>{calls++;if(failed)throw Object.assign(new Error('AI unavailable'),{status:503});return mockAI();});
+ const channel=await create(),url='/api/channels/'+channel.code;
+ const original=await(await request(url+'/analyze','POST',{log:drive()},channel.write_token)).json();
+ const body={recommendation_id:original.recommendation_id,driving_preference:{goal:'편안한 주행',comfort:65,steering_response:45}};
+ assert.equal((await request(url+'/advice','POST',body,null,{Origin:'https://other.example'})).status,403);
+ assert.equal((await request(url+'/advice','POST',{...body,padding:'x'.repeat(4096)})).status,413);
+ assert.equal(calls,1);failed=true;
+ assert.equal((await request(url+'/advice','POST',body)).status,503);
+ assert.equal((await(await request(url+'/latest')).json()).recommendation_id,original.recommendation_id);
+ failed=false;for(let i=0;i<11;i++)assert.equal((await request(url+'/advice','POST',body)).status,200);
+ assert.equal((await request(url+'/advice','POST',body)).status,429);
 });
 
 test('server storage is distinct from actual app receipt, and a new result needs a new receipt',async()=>{

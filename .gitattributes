@@ -1,0 +1,2 @@
+# Preserve the validated source snapshot bytes, including line endings.
+* -text

@@ -18,3 +18,21 @@ export function makeResult(log,measured,ai){
   comparison_conditions:{lap_selection:'start_to_analyze',minimum_valid_laps:0},
   policy:{simulation_only:true,external_ai:true,training_collection:false,production_upload:true,raw_log_stored:false,retention_days:7}};
 }
+
+// Reuse a stored measurement summary; never invent samples or overwrite the recorded drive.
+export function advicePayload(record,preference){
+ return {simulation:true,source:'pleos_contest_saved_summary',current_setup:record.current_setup,
+  available_presets:Object.fromEntries(Object.entries(PRESETS).map(([id,p])=>[id,p.label])),
+  units:{acceleration:'g',pedals:'percent (0..100)',speed:'km/h',suspension:'mm',slip_angle:'rad',steering_and_brake_rates:'normalized input per second'},
+  analysis_window:record.analysis_window,measurements:record.evidence.observed_metrics,
+  wheel_measurements:record.evidence.wheel_metrics,handling:record.evidence.handling_signature,
+  driving_preference:preference,limitations:['저장된 주행 요약을 사용하며 원시 표본을 다시 측정하지 않습니다.']};
+}
+export function makeAdvice(record,ai,preference){
+ return {...record,recommendation_id:crypto.randomUUID(),created_at:new Date().toISOString(),
+  origin_recommendation_id:record.recommendation_id,driving_preference:preference,
+  analysis:ai.analysis,ai:{provider:ai.provider,model:ai.model,response_id:ai.response_id},
+  recommended_setup:ai.analysis.recommended_preset?{...PRESETS[ai.analysis.recommended_preset]}:null,
+  evidence:{...record.evidence,rationale:ai.analysis.diagnosis,limitations:ai.analysis.limitations,
+   same_as_current:ai.analysis.recommended_preset===record.current_setup.id}};
+}

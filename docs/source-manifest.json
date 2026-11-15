@@ -1,223 +1,18 @@
 {
-  "release": "4.2.0",
-  "site_source_commit": "d69262aa7c597e6d473651a069af00d41ec6c82f",
-  "note": "These copied files are byte-identical to the local release source. Publication documentation and configuration examples are additional. Unused original Nostalife model files are excluded.",
+  "release": "5.3.0",
+  "note": "Files copied byte-for-byte from the validated 5.3 release Source directory. Publication README files, validation summaries, configuration examples and final APK are separate.",
   "files": [
-    {
-      "path": "web/analysis-demo/metrics.cjs",
-      "sha256": "268e25bd4a57f4592f3ae1d4c9eeb74e81bd8233c5074d0bc5f24030835edd6d"
-    },
-    {
-      "path": "web/analysis-demo/metrics3d.cjs",
-      "sha256": "cbae80ed6e78567107c92c9fe67a91eba32890cc5545bf197c98049b12401b8b"
-    },
-    {
-      "path": "web/analysis-demo/window.cjs",
-      "sha256": "aec4a2db82bdc971bc554ecbfb55b3bf504a27a6cacc9664079c1fe52960ec9b"
-    },
-    {
-      "path": "web/db/schema.js",
-      "sha256": "94e727f5b059db51c692116ec86dd8aab938be5c10aab9c536511a23fd5ce079"
-    },
-    {
-      "path": "web/driving-simulator-3d/core.js",
-      "sha256": "78c6ee40b5ecb4342785e7da0f19b91e15641ceb2538fe7fdf6ba1cf3cc048a4"
-    },
-    {
-      "path": "web/driving-simulator-3d/package.json",
-      "sha256": "fa6944a20ca5e6fbaf98fd202eb8c7004d5b4ab786e36b9ed02ee31dbe196c9f"
-    },
-    {
-      "path": "web/driving-simulator-3d/validate.cjs",
-      "sha256": "d06bde51e0608eef83bbd240484f0b51537591dac5a079cfdd41ba927efdcb67"
-    },
-    {
-      "path": "web/driving-simulator/core.js",
-      "sha256": "5a7897ca9ac0a61007e41772025c278b239d3d05f047a0272a09b39bedd88a20"
-    },
-    {
-      "path": "web/driving-simulator/package.json",
-      "sha256": "fa6944a20ca5e6fbaf98fd202eb8c7004d5b4ab786e36b9ed02ee31dbe196c9f"
-    },
-    {
-      "path": "web/driving-simulator/validate.js",
-      "sha256": "ada1f18991b84ce9cc33009f72ac15cc1010bbccc5a0c068037dacec0cc7ef84"
-    },
-    {
-      "path": "web/drizzle.config.js",
-      "sha256": "5e8337b1bb4fdd6a6549c82eea017b8f15ec28989782a280310478b09d10e29b"
-    },
-    {
-      "path": "web/drizzle/0000_majestic_saracen.sql",
-      "sha256": "0b9893842996d1c0793f360b7fbeeb1c7f595f83622ef54e2960e8b37a23b030"
-    },
-    {
-      "path": "web/drizzle/0001_mature_norman_osborn.sql",
-      "sha256": "44fd96aea15a97d63cb9fdf201f1748db5723f3e9822f5faaeeceea3fd6a6fb5"
-    },
-    {
-      "path": "web/drizzle/0002_outstanding_alice.sql",
-      "sha256": "c11014e047715b297298ec765d5d5469458417453f31c1e389a2c16654ca1219"
-    },
-    {
-      "path": "web/drizzle/meta/0000_snapshot.json",
-      "sha256": "a1c30826c3bab72d88bfa46160cc29323eada70ad014c0e3125ae99899b242f5"
-    },
-    {
-      "path": "web/drizzle/meta/0001_snapshot.json",
-      "sha256": "f11d5355e1e31a694e17a2e8ecf5b59ce8fb3ca5e0db3981df8fba9a1fb17204"
-    },
-    {
-      "path": "web/drizzle/meta/0002_snapshot.json",
-      "sha256": "068db91a92fefc6b5ca4a4e198cfaf2c52bf27a4b5675a863200ea2936144cc5"
-    },
-    {
-      "path": "web/drizzle/meta/_journal.json",
-      "sha256": "25524557b576d6ba1d8bdf2667166d62f7baed5dcca6fae8d43d7f36598b99e3"
-    },
-    {
-      "path": "web/lib/ai.js",
-      "sha256": "d94593d85e24950cb93a956dc3f871eb62a1e0217719295624259868c65d24ab"
-    },
-    {
-      "path": "web/lib/crypto.js",
-      "sha256": "9ebd2ea8ff854d959d75b68f98bbaeb0a944b7da7982375e312fb23293b8d599"
-    },
-    {
-      "path": "web/lib/result.js",
-      "sha256": "5adcc1f554c3d7a9870b70e5e8c46396a1d787b28f1c3007a2a32b0b50616a8b"
-    },
-    {
-      "path": "web/package.json",
-      "sha256": "0dbc1a54f32e15ed989a3f297bd4244b48df1b55181dcfd2b69b7e89cf322b8d"
-    },
-    {
-      "path": "web/pnpm-lock.yaml",
-      "sha256": "9743ba887532f27dd8523266d434d1ad3f7c071c56e593a409197bcf182cb2c9"
-    },
-    {
-      "path": "web/pnpm-workspace.yaml",
-      "sha256": "d6d0c24446d91ef762d37c6ba801bb516e65d7055aa9f8027fcd457409a97ce1"
-    },
-    {
-      "path": "web/public/_headers",
-      "sha256": "aafafd81b0b37f744231661af139e92e5c43a5f24ba4b8e8fa3c39db55c9c496"
-    },
-    {
-      "path": "web/public/app.js",
-      "sha256": "dfbc4dd6a2e75a05c0387d83963d7fe47f0cca7386e0efdfcd7433adff5f14e1"
-    },
-    {
-      "path": "web/public/base.js",
-      "sha256": "5a7897ca9ac0a61007e41772025c278b239d3d05f047a0272a09b39bedd88a20"
-    },
-    {
-      "path": "web/public/core.js",
-      "sha256": "78c6ee40b5ecb4342785e7da0f19b91e15641ceb2538fe7fdf6ba1cf3cc048a4"
-    },
-    {
-      "path": "web/public/index.html",
-      "sha256": "5aee4821c4c5a975da3aa18ee9d4b022201a76d4b28688e9a7539369a550afe6"
-    },
-    {
-      "path": "web/public/pairing.js",
-      "sha256": "0f330d394092f4e7855d2341d76a90eb13249236a47aafae08da9883c5969705"
-    },
-    {
-      "path": "web/public/scene.js",
-      "sha256": "fb76cc0bba71b5ede8208c074f0817ef838ab4e6ba64d49e1bbf224c1adaafae"
-    },
-    {
-      "path": "web/public/styles.css",
-      "sha256": "bb3f777954912116f0a32476e77991e011b6d9edc56a124935c92a5f0bd3b70f"
-    },
-    {
-      "path": "web/public/vendor/LICENSE",
-      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
-    },
-    {
-      "path": "web/public/vendor/three.core.js",
-      "sha256": "03fb6e9fa08628385a9096948593251ae473239c7039496d7c280cba73d84631"
-    },
-    {
-      "path": "web/public/vendor/three.module.js",
-      "sha256": "1bb0b770bac5da2b59b21aa5fff4c547eeb864d4e408e4c36fbc6ced1dce0e9e"
-    },
-    {
-      "path": "web/scripts/build.mjs",
-      "sha256": "02f9ffb322818352bb0e39add1dab1fa22923b7ceee07610ae23794f91db6a56"
-    },
-    {
-      "path": "web/scripts/check-live-analysis.mjs",
-      "sha256": "2f76a41c930ef1be840a327a5a47c36405cfd9a265359a94dd902b4e846df3be"
-    },
-    {
-      "path": "web/scripts/preview.mjs",
-      "sha256": "314d2df6c70e45a79d25e7b928e607e7d4416395dab9abae76e14ef0b35291ed"
-    },
-    {
-      "path": "web/tests/ai.test.mjs",
-      "sha256": "17a40bc9365071289cfc42f748f88a074635378cd342399ee3dbdc368adc46e9"
-    },
-    {
-      "path": "web/tests/api.test.mjs",
-      "sha256": "8d76738cec7292aa25627facc90e5607751273ce0bb47bfbee114e0ae945772d"
-    },
-    {
-      "path": "web/tests/db.mjs",
-      "sha256": "76382d850e58c745566b4e6e290e5867a5b9fa90531693c474721b15b2708a26"
-    },
-    {
-      "path": "web/tests/window.test.mjs",
-      "sha256": "60a325032cc41c238358e4d125380d4b8bdad29c3bf8ea111bf1c3d9724274c0"
-    },
-    {
-      "path": "web/worker/index.js",
-      "sha256": "d6f8328634e4c563c15de8bd421c83fabf3757ed15a76ab44575de2ac8c748f4"
-    },
-    {
-      "path": "android-app/build.gradle.kts",
-      "sha256": "780d597cbe0f80d0103221a566db7574d1e07b17adca5bdbe7d6c728d77df12a"
-    },
-    {
-      "path": "android-app/settings.gradle.kts",
-      "sha256": "4df18a6a4279d906b462ba67b3831a9cb5272d9127eabc4dd30aad46edc16722"
-    },
-    {
-      "path": "android-app/gradle.properties",
-      "sha256": "8569dd25df35d9b8f04f048aaf08a1a9c210f847022de92aeec1205fb3ce5436"
-    },
-    {
-      "path": "android-app/gradlew",
-      "sha256": "aed171fb114f82e6eaea4970a245a200e0582a7dcc8ec0891ca41b6e4a62b754"
-    },
-    {
-      "path": "android-app/gradlew.bat",
-      "sha256": "fedad02c18e266ec094995a5751b7fe1eb6e74f66bf75db64fae2e50eb22c234"
-    },
-    {
-      "path": "android-app/Pleos 앱 빌드.cmd",
-      "sha256": "bc35edb0c41604c112439f807906e4815fa9c62c964d945ffab6d1f12cb83704"
-    },
-    {
-      "path": "android-app/gradle/wrapper/gradle-wrapper.jar",
-      "sha256": "55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c"
-    },
-    {
-      "path": "android-app/gradle/wrapper/gradle-wrapper.properties",
-      "sha256": "41dece36ce4d87212f77e674b1f411510655a953d641bc29d6e89334e4e5f8f6"
-    },
-    {
-      "path": "android-app/scripts/build-pleos.ps1",
-      "sha256": "d3bdbbe80ec2597e38bd0ec1a1b76cc572594d83079e643b0f39d415e9ab64f6"
-    },
-    {
-      "path": "android-app/scripts/build-output.gradle",
-      "sha256": "6969cc014b95f8173590bfadfc41d55fe7511e6c356fc15c856b313952d09cff"
-    },
     {
       "path": "android-app/app/build.gradle.kts",
       "sha256": "b2f2af486ddd0f19970471f1275ac9eaa4230b466b5ce9d8b068ea5aae9bf034"
+    },
+    {
+      "path": "android-app/app/src/debug/AndroidManifest.xml",
+      "sha256": "fd11ccbad852a21ee167e11ac341016a20b4a25f01c0a09bbb939bafa3804e86"
+    },
+    {
+      "path": "android-app/app/src/debug/res/xml/network_security_config.xml",
+      "sha256": "664a301dda482bf7bdde415705acae894f38098bb28491f3e977a7b0c6c8a375"
     },
     {
       "path": "android-app/app/src/main/AndroidManifest.xml",
@@ -229,11 +24,11 @@
     },
     {
       "path": "android-app/app/src/main/java/kr/nostalife/companion/Contract.kt",
-      "sha256": "fd75651646fe858702e6a769fe11aeb661a73c58f6413e736095cfc310b0a75c"
+      "sha256": "0209d72e81a41c9f433e9efa90ca0ebbf369feec4ca2579b7e43e60093f74888"
     },
     {
       "path": "android-app/app/src/main/java/kr/nostalife/companion/LatestClient.kt",
-      "sha256": "cb261622546cff719d8a20767aa2149abb807ed22a14cbeda678ae0341a9e458"
+      "sha256": "bed2750456ddd308220db3655174c3a739e602477a148f9e3311eddc7778c8b8"
     },
     {
       "path": "android-app/app/src/main/java/kr/nostalife/companion/LocalStorage.kt",
@@ -242,6 +37,10 @@
     {
       "path": "android-app/app/src/main/java/kr/nostalife/companion/MainActivity.kt",
       "sha256": "475ac4e02817823dc77e42226428a1460e10e98d1c250d4aedab1a653a975663"
+    },
+    {
+      "path": "android-app/app/src/main/java/kr/nostalife/companion/NAdviceCatalog.kt",
+      "sha256": "25cb8d7a3cbb7f9fda06909cd32e5f86eb6773cbca0c8a474113a80624c812de"
     },
     {
       "path": "android-app/app/src/main/java/kr/nostalife/companion/NostalifeUi.kt",
@@ -272,20 +71,12 @@
       "sha256": "02da72351c0a581f1ccd791abd139abb30b36cb1899d64aabda1ac357da2081d"
     },
     {
-      "path": "android-app/app/src/debug/AndroidManifest.xml",
-      "sha256": "fd11ccbad852a21ee167e11ac341016a20b4a25f01c0a09bbb939bafa3804e86"
-    },
-    {
-      "path": "android-app/app/src/debug/res/xml/network_security_config.xml",
-      "sha256": "664a301dda482bf7bdde415705acae894f38098bb28491f3e977a7b0c6c8a375"
-    },
-    {
       "path": "android-app/app/src/test/java/kr/nostalife/companion/ConnectionTest.kt",
       "sha256": "87c81cebbc047bdbd14f6687f5e8627b9673144fb1835fe7a19b41883f87e0d8"
     },
     {
       "path": "android-app/app/src/test/java/kr/nostalife/companion/ContractTest.kt",
-      "sha256": "31f6686c9db9ba35641979a9d23a08947b1619bcfec3766daf49ef3aff465dcd"
+      "sha256": "6ffda60f51d6965fdc26ce9f3e3087ec31ab792b1946539cc6355fdbf689e2df"
     },
     {
       "path": "android-app/app/src/test/java/kr/nostalife/companion/ControllerTest.kt",
@@ -312,28 +103,32 @@
       "sha256": "77fa827b08e9fcbbc5965a6f75ce1cac15edcb6130266abd4f3d3c33646d42ea"
     },
     {
+      "path": "android-app/build.gradle.kts",
+      "sha256": "780d597cbe0f80d0103221a566db7574d1e07b17adca5bdbe7d6c728d77df12a"
+    },
+    {
+      "path": "android-app/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c"
+    },
+    {
+      "path": "android-app/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "41dece36ce4d87212f77e674b1f411510655a953d641bc29d6e89334e4e5f8f6"
+    },
+    {
+      "path": "android-app/gradle.properties",
+      "sha256": "8569dd25df35d9b8f04f048aaf08a1a9c210f847022de92aeec1205fb3ce5436"
+    },
+    {
+      "path": "android-app/gradlew",
+      "sha256": "aed171fb114f82e6eaea4970a245a200e0582a7dcc8ec0891ca41b6e4a62b754"
+    },
+    {
+      "path": "android-app/gradlew.bat",
+      "sha256": "fedad02c18e266ec094995a5751b7fe1eb6e74f66bf75db64fae2e50eb22c234"
+    },
+    {
       "path": "android-app/pleos-app/build.gradle.kts",
-      "sha256": "45bef11b7b187c839a5091a735f73dabd568cb850fb9ba392d12d4f23ffad581"
-    },
-    {
-      "path": "android-app/pleos-app/src/main/AndroidManifest.xml",
-      "sha256": "f154a75bc5080b4321d3671e33c617ebf46e8193347a951b6d76aeb15fde0c65"
-    },
-    {
-      "path": "android-app/pleos-app/src/main/assets/schema.json",
-      "sha256": "21f6bc88cab653a939e68efc7ce23ea3a62d72acc5a3173798e5deccc252af44"
-    },
-    {
-      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/GleoReply.kt",
-      "sha256": "f3884125e00e275435ed8c0ed2b5c8efd1fb329d7302341b1ad0bb9e5a857a95"
-    },
-    {
-      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/PleosActivity.kt",
-      "sha256": "7c3f504c56fc6deb33601cfcc0fc39e9cf4f15ad16113022d4475680e3f06bcc"
-    },
-    {
-      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/PleosDashboard.kt",
-      "sha256": "7425f52363a7e7d8e14dfe781bb2c495560de045e0810f6ccdbdfb43fc52d25d"
+      "sha256": "f3647c828abf3901c9f46cc2755d4583632767a663e54ab64b87a71b3ab3de85"
     },
     {
       "path": "android-app/pleos-app/src/debug/AndroidManifest.xml",
@@ -341,11 +136,75 @@
     },
     {
       "path": "android-app/pleos-app/src/debug/assets/schema.json",
-      "sha256": "0c411836fe80a8e3a86190b4aa8beb993c9ce0fc125db54df7f8b83ce40b2b5f"
+      "sha256": "75c68d55a3aa9ed9f0b50710b1ec4b38874ebc1295b13f989af17c7a6e87270c"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/AndroidManifest.xml",
+      "sha256": "d5b2c6203ea9070661a2dd4c36e3584d32b44e9af135019a468c4fcd6f2e0ed7"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/assets/schema.json",
+      "sha256": "80866a263e9ce7b8d74006d88dca415f5c46557d9a3bbf0cb2e6d358c9b323c4"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/ContestDashboard.kt",
+      "sha256": "7375e8fd29dbc198d0271926c9500d85ba1e72b6ecdf02693cc4e32782a06e91"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/ContestModel.kt",
+      "sha256": "a5e2098cfcd1fe713bc10fb520b7a2a45307a3e122a0216da826d2e4aee85844"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/DriveGoals.kt",
+      "sha256": "b8285ee6ae99a5f7831478df62af1b38d44bd836874efc4f357a2c6fac0c6c73"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/DrivePresentation.kt",
+      "sha256": "ce281078cd65a7fae01412be219467092b08329ca2a170f36043c25d54b08396"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/GleoReply.kt",
+      "sha256": "f3884125e00e275435ed8c0ed2b5c8efd1fb329d7302341b1ad0bb9e5a857a95"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/GoalAdvice.kt",
+      "sha256": "67669e9e0b7a410655a00662326ab9e1d7eb8521780ce0b53c2cf0d885cc99b8"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/NCustom.kt",
+      "sha256": "95dcb484c4f853ca9bf48787ba3abd58103034e989dc72a209c193b2fa373076"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/PleosActivity.kt",
+      "sha256": "c7363bc42f8e55619d1f7f671d0af9321207942591e2ba126543bfe4aae403f1"
+    },
+    {
+      "path": "android-app/pleos-app/src/main/java/kr/nostalife/companion/PleosDashboard.kt",
+      "sha256": "7425f52363a7e7d8e14dfe781bb2c495560de045e0810f6ccdbdfb43fc52d25d"
     },
     {
       "path": "android-app/pleos-app/src/test/java/kr/nostalife/companion/GleoReplyTest.kt",
       "sha256": "fb8e0cb88ab980c5ed29c2b314a2a8af20d3649a7333a44f0c4eaf836e94915f"
+    },
+    {
+      "path": "android-app/pleos-app/src/test/java/kr/nostalife/companion/GoalAdviceTest.kt",
+      "sha256": "badb05e0c85b392bb38d012584a51665b175f0e536bccfd7c94a0f62bf09845b"
+    },
+    {
+      "path": "android-app/pleos-app/src/test/java/kr/nostalife/companion/NCustomTest.kt",
+      "sha256": "dfc727be937bbac47420aedb08b3b4267cbafac92d5819b61493e81e8c4f211d"
+    },
+    {
+      "path": "android-app/scripts/build-output.gradle",
+      "sha256": "6969cc014b95f8173590bfadfc41d55fe7511e6c356fc15c856b313952d09cff"
+    },
+    {
+      "path": "android-app/scripts/build-pleos.ps1",
+      "sha256": "f89b4fcb8a4e74aaf714e7dfbaeb8cba6c2a1da4db1af0f0a47c46703f315994"
+    },
+    {
+      "path": "android-app/settings.gradle.kts",
+      "sha256": "4df18a6a4279d906b462ba67b3831a9cb5272d9127eabc4dd30aad46edc16722"
     },
     {
       "path": "android-app/vehicle-probe/build.gradle.kts",
@@ -353,7 +212,7 @@
     },
     {
       "path": "android-app/vehicle-probe/src/main/AndroidManifest.xml",
-      "sha256": "0f6ec4b5f99144022e28d60545349ff687b61de336472c0821693f34f556690e"
+      "sha256": "587ca5c2c4e2ae53c0beb683daa29cfc3e22b1b3c1828bd1753846f808d0d000"
     },
     {
       "path": "android-app/vehicle-probe/src/main/java/kr/nostalife/vehicleprobe/Capture.kt",
@@ -361,7 +220,7 @@
     },
     {
       "path": "android-app/vehicle-probe/src/main/java/kr/nostalife/vehicleprobe/CarSource.kt",
-      "sha256": "f05ec3022ff647786223016fca3dec1adbb5cba84d1d308905ba265f9f309561"
+      "sha256": "cc9a6c5eedb358fb9e3873efa077e676c1edc8949d467d358ae836e146f5a269"
     },
     {
       "path": "android-app/vehicle-probe/src/main/java/kr/nostalife/vehicleprobe/PleosSource.kt",
@@ -369,7 +228,7 @@
     },
     {
       "path": "android-app/vehicle-probe/src/main/java/kr/nostalife/vehicleprobe/ProbeActivity.kt",
-      "sha256": "a76bed923aaacd56a17cd36ec25dcd23d92bb3e00fd6c1047861bd0088527e82"
+      "sha256": "4cdbc28c92acde4becced259eab3720c55cee70e7a5a0aa0b4e4c384e0bba002"
     },
     {
       "path": "android-app/vehicle-probe/src/main/java/kr/nostalife/vehicleprobe/SensorSource.kt",
@@ -380,24 +239,248 @@
       "sha256": "4c74deeb5731b7dc58489dd87349a0b698103e8ac7bb7955327df2486e9ea0c0"
     },
     {
-      "path": "pleos-launcher/Launcher.cs",
-      "sha256": "6e814ce118dbb491372bde90221b2c9b8b674832bc7011871923914d7b4890d9"
+      "path": "docs/THIRD_PARTY_NOTICES.md",
+      "sha256": "0f2367f546f36e09fc6dc509eb68a0f4fc509b0409481b4b259a3b8feda2cc10"
     },
     {
-      "path": "pleos-launcher/build.ps1",
-      "sha256": "66f33b386835c86fbce6037de3df50b609eb33d1ec0bb17c7364225d34844614"
+      "path": "local-bridge/acc_lap_continuity.py",
+      "sha256": "1ac1d5f5f7e9220ef91c0003058e8095ed8fd845c871b67b15d61012afd4fa34"
     },
     {
-      "path": "pleos-launcher/app.manifest",
-      "sha256": "d75baddcbdb5bf21790499bf903fcb1783af8f587f72d6c96bfe246016130f73"
+      "path": "local-bridge/acc_process.py",
+      "sha256": "880edb07675babe044454f59ab9457587a1c9fb56178c300ee7b5f1f09a3baf2"
+    },
+    {
+      "path": "local-bridge/acc_shared_memory.py",
+      "sha256": "13cd079070002a0b7ddc69397798b564f9cc51394fc44b4336528b2526147e22"
+    },
+    {
+      "path": "local-bridge/bridge.py",
+      "sha256": "38d743d4102ad1198f0eba57673f1930e0436f13e17ea1348d7e0963629162d2"
+    },
+    {
+      "path": "local-bridge/build.ps1",
+      "sha256": "521771443e3d538149c77eacff50f7ed252a493dd9436e48eb147af35d915ffe"
+    },
+    {
+      "path": "local-bridge/test_acc_shared_memory.py",
+      "sha256": "df80892d07e25859d6d4cd0260fd60309920cf3fd6014b89a44464e33843ba1c"
+    },
+    {
+      "path": "local-bridge/test_bridge.py",
+      "sha256": "24e258b95fe84216dd85f282a034dde98bccdc39f643d4b9590f19169fa6c6a3"
     },
     {
       "path": "pleos-launcher/android-license.txt",
       "sha256": "1f8729233617b193fd619213792ae16a41b95d2bbbf525dfe66998252ba68b16"
     },
     {
+      "path": "pleos-launcher/app.manifest",
+      "sha256": "d75baddcbdb5bf21790499bf903fcb1783af8f587f72d6c96bfe246016130f73"
+    },
+    {
+      "path": "pleos-launcher/build.ps1",
+      "sha256": "7ffca7f1aa19d860e9ef261b2de69e6f8a0abd1b0bb47fff3f783b34edcb5cb7"
+    },
+    {
+      "path": "pleos-launcher/Launcher.cs",
+      "sha256": "dac388179c14b9acb773654e27163bcd5c35d2bf262083d09d27c952056dfd73"
+    },
+    {
       "path": "pleos-launcher/pleos-license.txt",
       "sha256": "a5cb1cdb7fd2c4bad890df3480c1a6bb85eda6c2fce10868f4380a030fc2134d"
+    },
+    {
+      "path": "web/.openai/hosting.example.json",
+      "sha256": "3ef05fa168fe3552d13100e80d0f3413f664fc8bc2efabbe6750e37d7c6f114e"
+    },
+    {
+      "path": "web/analysis-demo/metrics.cjs",
+      "sha256": "268e25bd4a57f4592f3ae1d4c9eeb74e81bd8233c5074d0bc5f24030835edd6d"
+    },
+    {
+      "path": "web/analysis-demo/metrics3d.cjs",
+      "sha256": "cbae80ed6e78567107c92c9fe67a91eba32890cc5545bf197c98049b12401b8b"
+    },
+    {
+      "path": "web/analysis-demo/window.cjs",
+      "sha256": "aec4a2db82bdc971bc554ecbfb55b3bf504a27a6cacc9664079c1fe52960ec9b"
+    },
+    {
+      "path": "web/db/schema.js",
+      "sha256": "94e727f5b059db51c692116ec86dd8aab938be5c10aab9c536511a23fd5ce079"
+    },
+    {
+      "path": "web/driving-simulator/core.js",
+      "sha256": "5a7897ca9ac0a61007e41772025c278b239d3d05f047a0272a09b39bedd88a20"
+    },
+    {
+      "path": "web/driving-simulator/package.json",
+      "sha256": "fa6944a20ca5e6fbaf98fd202eb8c7004d5b4ab786e36b9ed02ee31dbe196c9f"
+    },
+    {
+      "path": "web/driving-simulator/validate.js",
+      "sha256": "ada1f18991b84ce9cc33009f72ac15cc1010bbccc5a0c068037dacec0cc7ef84"
+    },
+    {
+      "path": "web/driving-simulator-3d/core.js",
+      "sha256": "78c6ee40b5ecb4342785e7da0f19b91e15641ceb2538fe7fdf6ba1cf3cc048a4"
+    },
+    {
+      "path": "web/driving-simulator-3d/package.json",
+      "sha256": "fa6944a20ca5e6fbaf98fd202eb8c7004d5b4ab786e36b9ed02ee31dbe196c9f"
+    },
+    {
+      "path": "web/driving-simulator-3d/validate.cjs",
+      "sha256": "d06bde51e0608eef83bbd240484f0b51537591dac5a079cfdd41ba927efdcb67"
+    },
+    {
+      "path": "web/drizzle/0000_majestic_saracen.sql",
+      "sha256": "0b9893842996d1c0793f360b7fbeeb1c7f595f83622ef54e2960e8b37a23b030"
+    },
+    {
+      "path": "web/drizzle/0001_mature_norman_osborn.sql",
+      "sha256": "44fd96aea15a97d63cb9fdf201f1748db5723f3e9822f5faaeeceea3fd6a6fb5"
+    },
+    {
+      "path": "web/drizzle/0002_outstanding_alice.sql",
+      "sha256": "c11014e047715b297298ec765d5d5469458417453f31c1e389a2c16654ca1219"
+    },
+    {
+      "path": "web/drizzle/meta/0000_snapshot.json",
+      "sha256": "a1c30826c3bab72d88bfa46160cc29323eada70ad014c0e3125ae99899b242f5"
+    },
+    {
+      "path": "web/drizzle/meta/0001_snapshot.json",
+      "sha256": "f11d5355e1e31a694e17a2e8ecf5b59ce8fb3ca5e0db3981df8fba9a1fb17204"
+    },
+    {
+      "path": "web/drizzle/meta/0002_snapshot.json",
+      "sha256": "068db91a92fefc6b5ca4a4e198cfaf2c52bf27a4b5675a863200ea2936144cc5"
+    },
+    {
+      "path": "web/drizzle/meta/_journal.json",
+      "sha256": "25524557b576d6ba1d8bdf2667166d62f7baed5dcca6fae8d43d7f36598b99e3"
+    },
+    {
+      "path": "web/drizzle.config.js",
+      "sha256": "5e8337b1bb4fdd6a6549c82eea017b8f15ec28989782a280310478b09d10e29b"
+    },
+    {
+      "path": "web/lib/ai.js",
+      "sha256": "51fee7cdbbc624e404c2944fcfd43850c05759f402aeaf382137f53e25ed3897"
+    },
+    {
+      "path": "web/lib/crypto.js",
+      "sha256": "9ebd2ea8ff854d959d75b68f98bbaeb0a944b7da7982375e312fb23293b8d599"
+    },
+    {
+      "path": "web/lib/n-custom.js",
+      "sha256": "83b5575a5acb65aa358e6a197bb334faf235e69edc3f9d09479261f5a81427dc"
+    },
+    {
+      "path": "web/lib/result.js",
+      "sha256": "a8319805dc78a2c1bace212a9cfbb6c0188614ef3ba83c23023b70a4a7965261"
+    },
+    {
+      "path": "web/package.json",
+      "sha256": "0dbc1a54f32e15ed989a3f297bd4244b48df1b55181dcfd2b69b7e89cf322b8d"
+    },
+    {
+      "path": "web/pnpm-lock.yaml",
+      "sha256": "9743ba887532f27dd8523266d434d1ad3f7c071c56e593a409197bcf182cb2c9"
+    },
+    {
+      "path": "web/pnpm-workspace.yaml",
+      "sha256": "d6d0c24446d91ef762d37c6ba801bb516e65d7055aa9f8027fcd457409a97ce1"
+    },
+    {
+      "path": "web/public/acc-monitor.js",
+      "sha256": "daed19cb987d62248096882a1a9c6483d2a179fbf92fa0c0ea70ff304a7fec66"
+    },
+    {
+      "path": "web/public/app.js",
+      "sha256": "f55ac5a1a1f6242b7a01437cca90cea072245fb6a58395c4f414f8dbfd880b84"
+    },
+    {
+      "path": "web/public/base.js",
+      "sha256": "5a7897ca9ac0a61007e41772025c278b239d3d05f047a0272a09b39bedd88a20"
+    },
+    {
+      "path": "web/public/contest.css",
+      "sha256": "7ac633321039589cc1542929db62c9cb31ad6c0830af7e04d1647940109ff49b"
+    },
+    {
+      "path": "web/public/core.js",
+      "sha256": "78c6ee40b5ecb4342785e7da0f19b91e15641ceb2538fe7fdf6ba1cf3cc048a4"
+    },
+    {
+      "path": "web/public/drive-preference.js",
+      "sha256": "56da7d67ea19b7c67dbbcaeb042818b9ea2461e9019df7b01a50e6359c5224b8"
+    },
+    {
+      "path": "web/public/index.html",
+      "sha256": "6107410ea5170af09b76a4fd20aeb8410a84098c5a1732a451239f0b4dac5d0b"
+    },
+    {
+      "path": "web/public/pairing.js",
+      "sha256": "fc3acc1c4f2e0e196af79c43b2eb67cecaeda96311de062253f5af45ead6f7cf"
+    },
+    {
+      "path": "web/public/scene.js",
+      "sha256": "fb76cc0bba71b5ede8208c074f0817ef838ab4e6ba64d49e1bbf224c1adaafae"
+    },
+    {
+      "path": "web/public/styles.css",
+      "sha256": "bb3f777954912116f0a32476e77991e011b6d9edc56a124935c92a5f0bd3b70f"
+    },
+    {
+      "path": "web/public/vendor/LICENSE",
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "path": "web/public/vendor/three.core.js",
+      "sha256": "03fb6e9fa08628385a9096948593251ae473239c7039496d7c280cba73d84631"
+    },
+    {
+      "path": "web/public/vendor/three.module.js",
+      "sha256": "1bb0b770bac5da2b59b21aa5fff4c547eeb864d4e408e4c36fbc6ced1dce0e9e"
+    },
+    {
+      "path": "web/public/_headers",
+      "sha256": "aafafd81b0b37f744231661af139e92e5c43a5f24ba4b8e8fa3c39db55c9c496"
+    },
+    {
+      "path": "web/scripts/build.mjs",
+      "sha256": "02f9ffb322818352bb0e39add1dab1fa22923b7ceee07610ae23794f91db6a56"
+    },
+    {
+      "path": "web/scripts/check-live-analysis.mjs",
+      "sha256": "2f76a41c930ef1be840a327a5a47c36405cfd9a265359a94dd902b4e846df3be"
+    },
+    {
+      "path": "web/scripts/preview.mjs",
+      "sha256": "314d2df6c70e45a79d25e7b928e607e7d4416395dab9abae76e14ef0b35291ed"
+    },
+    {
+      "path": "web/tests/ai.test.mjs",
+      "sha256": "ec807b6197f8db6145e3576ab55d26ef60f4212d42e90a48c147dfc7a730031f"
+    },
+    {
+      "path": "web/tests/api.test.mjs",
+      "sha256": "8973e87d61f0e444c58e2b0e1ebe4ca39e1433375b2c3eead1a4b7c663437099"
+    },
+    {
+      "path": "web/tests/db.mjs",
+      "sha256": "76382d850e58c745566b4e6e290e5867a5b9fa90531693c474721b15b2708a26"
+    },
+    {
+      "path": "web/tests/window.test.mjs",
+      "sha256": "60a325032cc41c238358e4d125380d4b8bdad29c3bf8ea111bf1c3d9724274c0"
+    },
+    {
+      "path": "web/worker/index.js",
+      "sha256": "6a3d29f17e634b7c586d77e4ab63f98b1700c601e14df69fee9e9dff1e859426"
     }
   ]
 }

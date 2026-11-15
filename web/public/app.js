@@ -10,6 +10,15 @@ const held = new Set();
 const sliders = { steering: $('steer-slider'), throttle: $('throttle-slider'), brake: $('brake-slider') };
 const manual = { steering: 0, throttle: 0, brake: 0 };
 let sliderControl = false, analyzing = false;
+// Publish only current simulator values to this PC. This is separate from online AI analysis.
+let publishing = false;
+setInterval(async () => {
+  if (publishing) return;
+  publishing = true;
+  try { await fetch('/local/sim', {method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_id:session.sessionId, values:session.sample(), running:session.status === 'running'})}); }
+  catch {} finally { publishing = false; }
+}, 250);
 const formatTime = ms => `${Math.floor(ms / 60000)}:${(ms % 60000 / 1000).toFixed(2).padStart(5, '0')}`;
 for (const id of ['suspension', 'slip']) for (const wheel of S.CORNERS) {
   const box = document.createElement('div'); box.className = 'wheel';
@@ -116,6 +125,9 @@ $('analyze').onclick = async () => {
     panel.replaceChildren();
     const title = document.createElement('h2'); title.textContent = result.analysis.headline; panel.append(title);
     const scope = document.createElement('p'); scope.className='analysis-scope'; scope.textContent = `시작 → 분석 버튼 · ${result.analysis_window.duration_s.toFixed(2)}초 · ${result.analysis_window.sample_count.toLocaleString()}개 표본`; panel.append(scope);
+    const conclusion=document.createElement('section'),target=result.analysis.driving_targets;
+    const conclusionTitle=document.createElement('h3');conclusionTitle.textContent='AI 주행 결론';conclusion.append(conclusionTitle);
+    const conclusionText=document.createElement('p');conclusionText.textContent=target?`승차감 ${target.comfort} / 조향응답성 ${target.steering_response} · ${target.reason}`:'분석은 도착했습니다. 현재 서버는 수치 결론을 반환하지 않아 추천값은 대기 중입니다.';conclusion.append(conclusionText);panel.append(conclusion);
     for(const [key,label] of [['diagnosis','주행 진단'],['driver_coaching','운전 팁'],['preset_reason','프리셋 비교'],['next_check','다음 주행에서 확인']]){
       const section=document.createElement('section'),heading=document.createElement('h3'),text=document.createElement('p');heading.textContent=label;text.textContent=result.analysis[key];section.append(heading,text);panel.append(section);
     }

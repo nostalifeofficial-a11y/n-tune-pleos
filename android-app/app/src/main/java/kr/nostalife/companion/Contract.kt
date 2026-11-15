@@ -9,7 +9,11 @@ class ContractException(message: String = "서버 응답이 2단계 추천 계�
 data class Preset(val id: String, val label: String, val gain: Double, val response: Double, val damping: Double)
 data class Comparison(val key: String, val label: String, val unit: String, val baseline: Double?, val direction: String, val method: String)
 data class AiAnalysis(val headline: String, val diagnosis: String, val coaching: String,
-    val nextCheck: String, val presetReason: String, val model: String)
+    val nextCheck: String, val presetReason: String, val model: String, val targets: DrivingTargets? = null,
+    val brief: BriefAnalysis? = null, val nCustom: List<NCustomAdvice> = emptyList())
+data class DrivingTargets(val comfort: Int, val steeringResponse: Int, val reason: String, val nextCheck: String)
+data class BriefAnalysis(val summary: String, val nextAction: String)
+data class NCustomAdvice(val car: String, val variant: String, val reason: String, val settings: Map<String, String>)
 data class Recommendation(
     val id: String, val sessionId: String, val createdAt: Instant, val source: String,
     val analysisMode: String, val status: String, val vehicleId: String, val trackId: String,
@@ -142,7 +146,47 @@ object RecommendationContract {
                 fun text(key: String) = analysis.requiredString(key).also { if (it.length > 4000) throw ContractException() }
                 val limits = analysis.textList("limitations")
                 if (limits.size > 12 || limits.any { it.length > 1000 } || limits != evidence.textList("limitations")) throw ContractException()
-                AiAnalysis(text("headline"), text("diagnosis"), text("driver_coaching"), text("next_check"), text("preset_reason"), meta.requiredString("model"))
+                val targets = if (analysis.has("driving_targets") && !analysis.isNull("driving_targets")) {
+                    val target = analysis.getJSONObject("driving_targets")
+                    fun index(key: String): Int {
+                        val value = target.number(key)!!
+                        if (value > 100 || value % 5 != 0.0) throw ContractException("AI 추천 지수는 0~100의 5 단위여야 합니다.")
+                        return value.toInt()
+                    }
+                    if (target.requiredString("scope") != "preference_trial") throw ContractException()
+                    val reason = target.requiredString("reason"); val check = target.requiredString("next_check")
+                    if (reason.length > 4000 || check.length > 4000) throw ContractException()
+                    DrivingTargets(index("comfort"), index("steering_response"), reason, check)
+                } else null
+                val brief = analysis.optJSONObject("brief")?.let {
+                    val summary = it.requiredString("summary"); val action = it.requiredString("next_action")
+                    if (summary.length > 120 || action.length > 120) throw ContractException()
+                    BriefAnalysis(summary, action)
+                }
+                if (analysis.has("brief") && !analysis.isNull("brief") && brief == null) throw ContractException()
+                val custom = if (analysis.has("n_custom") && !analysis.isNull("n_custom")) {
+                    val rows = analysis.getJSONArray("n_custom")
+                    if (rows.length() > 4) throw ContractException()
+                    val profiles = mutableSetOf<String>()
+                    (0 until rows.length()).map { index ->
+                        val row = rows.getJSONObject(index)
+                        val car = row.requiredString("car"); val variant = row.requiredString("variant")
+                        val allowed = NAdviceCatalog.options(car, variant) ?: throw ContractException()
+                        if (!profiles.add("$car:$variant") || row.requiredString("scope") != "ui_preview") throw ContractException()
+                        val reason = row.requiredString("reason")
+                        if (reason.length > 200) throw ContractException()
+                        val settings = row.getJSONArray("settings")
+                        if (settings.length() > allowed.size) throw ContractException()
+                        val values = linkedMapOf<String, String>()
+                        for (i in 0 until settings.length()) {
+                            val entry = settings.getJSONObject(i)
+                            val key = entry.requiredString("key"); val value = entry.requiredString("value")
+                            if (value !in (allowed[key] ?: emptyList()) || values.put(key, value) != null) throw ContractException()
+                        }
+                        NCustomAdvice(car, variant, reason, values)
+                    }
+                } else emptyList()
+                AiAnalysis(text("headline"), text("diagnosis"), text("driver_coaching"), text("next_check"), text("preset_reason"), meta.requiredString("model"), targets, brief, custom)
             } else null
             val comparisonsArray = root.getJSONArray("comparison_metrics")
             val comparisonKeys = setOf("lap_time_median_s", "lap_time_std_s", "steering_total_variation_per_s", "brake_release_p95_per_s")

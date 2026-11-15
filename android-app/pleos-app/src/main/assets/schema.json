@@ -1,5 +1,5 @@
 {
-  "packageName": "kr.nostalife.pleos",
+  "packageName": "kr.nostalife.pleos.contest",
   "appDescription": "Displays local driving simulation analysis, measured simulation metrics and setup candidates for comparison.",
   "invokeWord": "노스탈라이프",
   "version": "2.0.0",
