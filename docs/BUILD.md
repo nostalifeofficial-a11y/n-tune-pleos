@@ -8,7 +8,7 @@ Android Studio JDK, Android SDK platform 37 / build-tools 36.0.0을 사용합니
 powershell -NoProfile -ExecutionPolicy Bypass -File android-app/scripts/build-pleos.ps1
 ```
 
-앱·진단 모듈의 빌드, Android 단위 테스트와 릴리스 매니페스트 검사를 수행합니다. 결과 APK는 android-app/dist/Nostalife-Pleos-5.3.0-debug.apk입니다. 제출 APK 원본은 GitHub v5.3.0 릴리스에 별도 보존합니다. 로컬 서명과 빌드 환경에 따라 재빌드 APK 해시는 달라질 수 있습니다.
+앱·진단 모듈의 빌드, Android 단위 테스트와 릴리스 매니페스트 검사를 수행합니다. 결과 APK는 android-app/dist/Nostalife-Pleos-5.3.0-debug.apk입니다. 제출 APK 원본은 이 저장소의 delivery/에 소스와 함께 보존합니다. 로컬 서명과 빌드 환경에 따라 재빌드 APK 해시는 달라질 수 있습니다.
 
 ## 웹과 AI 서버
 

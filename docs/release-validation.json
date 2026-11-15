@@ -21,7 +21,6 @@
     "actual_ai_response_received": true,
     "goal_selection_and_recommendations_verified": true
   },
-  "apk_release_tag": "v5.3.0",
   "apk_filename": "Nostalife-Pleos-5.3.0-debug.apk",
   "apk_sha256": "ae4727f12cb74a8d0004e73391d801ff445b3604219646f2510ab82d609c70b6",
   "validation_scope": "Existing 5.3 release validation; source and APK copied without runtime changes for public submission. Web tests rerun successfully for publication.",
@@ -29,5 +28,7 @@
   "vehicle_write_api": false,
   "n_custom_scope": "UI prototype",
   "fresh_pc_full_install_verified": false,
-  "gleo_end_to_end_verified": false
+  "gleo_end_to_end_verified": false,
+  "apk_path": "delivery/Nostalife-Pleos-5.3.0-debug.apk",
+  "apk_git_blob_sha": "af825b942f754a2ba82dffe6ef795cf35d183991"
 }

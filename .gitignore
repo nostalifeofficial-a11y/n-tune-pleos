@@ -21,3 +21,6 @@
 pleos-launcher/apk.sha256
 .DS_Store
 Thumbs.db
+
+# Preserve the final contest APK alongside its source.
+!delivery/Nostalife-Pleos-5.3.0-debug.apk

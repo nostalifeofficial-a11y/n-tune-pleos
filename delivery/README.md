@@ -1,6 +1,6 @@
 # 최종 심사용 APK · 5.3.0
 
-파일: [Nostalife-Pleos-5.3.0-debug.apk](https://github.com/nostalifeofficial-a11y/n-tune-pleos/releases/download/v5.3.0/Nostalife-Pleos-5.3.0-debug.apk)
+파일: [Nostalife-Pleos-5.3.0-debug.apk](https://github.com/nostalifeofficial-a11y/n-tune-pleos/raw/refs/heads/main/delivery/Nostalife-Pleos-5.3.0-debug.apk)
 
 SHA-256: `ae4727f12cb74a8d0004e73391d801ff445b3604219646f2510ab82d609c70b6`
 

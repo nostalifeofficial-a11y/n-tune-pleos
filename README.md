@@ -6,7 +6,7 @@
 
 ## 심사용 APK
 
-- **[5.3.0 APK 다운로드](https://github.com/nostalifeofficial-a11y/n-tune-pleos/releases/download/v5.3.0/Nostalife-Pleos-5.3.0-debug.apk)**
+- **[5.3.0 APK 다운로드](https://github.com/nostalifeofficial-a11y/n-tune-pleos/raw/refs/heads/main/delivery/Nostalife-Pleos-5.3.0-debug.apk)**
 - [APK 파일과 설치 안내](delivery/README.md)
 - [3D 테스트 주행 홈페이지](https://nostalife-drive.rusticglint.chatgpt.site)
 - [빌드 안내](docs/BUILD.md) · [검증 기록](docs/release-validation.json) · [APK SHA-256](docs/SHA256SUMS.txt)
@@ -36,7 +36,7 @@
 | web/ | 테스트 주행, AI 서버, 결과 전달 API |
 | pleos-launcher/ | 공식 에뮬레이터와 APK를 준비하는 Windows 실행기 |
 | local-bridge/ | PC 테스트 주행 입력과 로컬 연결 도구 |
-| delivery/ | 최종 APK 다운로드·설치 안내 |
+| delivery/ | 최종 APK와 설치 안내 |
 
 [소스 파일 해시 목록](docs/source-manifest.json) · [Pleos API 적용 근거](docs/API-적용근거.md) · [외부 구성요소](docs/THIRD_PARTY_NOTICES.md)
 
