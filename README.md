@@ -25,6 +25,14 @@
 
 0~100 수치는 앱의 개인 선호 비교 지수입니다. 물리적인 차량 조정값이 아니며, N Custom은 UI 시제품입니다. 차량 쓰기 API나 ECU 자동 제어 기능은 없습니다. 실제 차량에서의 설정 효과와 안전성은 후속 검증 대상입니다.
 
+## Pleos 개발 에뮬레이터 환경 및 APK 유형
+
+- **Pleos 에뮬레이터 이미지:** 공식 `connect-avd/2.x/crp_car_emulator.zip` 사용. 저장소 실행기의 AVD 태그는 `Pleos Connect v2.1.0 APIs`이며, 이미지 자체의 세부 빌드 번호는 별도로 확인되지 않았습니다.
+- **운영 환경:** Android Automotive API 34 / x86_64. 앱 빌드는 Android SDK Platform 37, Build Tools 36.0.0, Pleos Vehicle SDK 2.3.2를 사용합니다.
+- **메인 화면 설정:** 2560 × 1440 px, 160 dpi. **보조 디스플레이 설정:** 720 × 1280 px, 213 dpi. 이는 `pleos-launcher/Launcher.cs`의 AVD 구성값이며, 실제 차량의 해상도 규격을 뜻하지 않습니다.
+- **현재 검증 APK:** `delivery/Nostalife-Pleos-5.3.0-debug.apk` (debug 빌드, `kr.nostalife.pleos.contest.debug`). 공식 Pleos 개발 에뮬레이터에서 이 파일의 설치·표시와 AI 응답을 확인했습니다.
+- **release 제출 구분:** 현재 저장소에는 배포 서명된 release APK가 없습니다. 기존 debug APK의 파일명만 release로 변경해서는 안 됩니다. 공모전 안내의 `apk/팀명_앱이름_release.apk` 형식은 실제 릴리스 빌드·서명·설치 검증 후에만 충족한 것으로 간주합니다.
+
 ## 검증 및 소스
 
 5.3.0 배포 시 Android 단위 테스트 36개, 웹 테스트 14개, Windows 실행기 검사 8개를 통과했습니다. 공식 Pleos 에뮬레이터에서 설치 APK의 해시 일치, 실제 AI 응답 수신, 목표 선택과 추천 표시를 확인했습니다. 실차 검증 완료를 의미하지 않습니다.
